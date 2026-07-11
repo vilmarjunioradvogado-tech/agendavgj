@@ -11,25 +11,65 @@ export default function Header() {
   const [active,   setActive]   = useState('/')
   const headerRef = useRef<HTMLElement>(null)
 
+  // Scroll background
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Scroll spy — track which section is in view
   useEffect(() => {
-    if (open) document.body.style.overflow = 'hidden'
-    else       document.body.style.overflow = ''
+    const sectionIds = NAV_LINKS
+      .filter(l => l.href.startsWith('#'))
+      .map(l => l.href.slice(1))
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActive(`#${entry.target.id}`)
+          }
+        })
+      },
+      { rootMargin: '-80px 0px -55% 0px', threshold: 0 }
+    )
+
+    const sections: HTMLElement[] = []
+    sectionIds.forEach(id => {
+      const el = document.getElementById(id)
+      if (el) { observer.observe(el); sections.push(el) }
+    })
+
+    // Reset to '/' when at top
+    const onScroll = () => {
+      if (window.scrollY < 100) setActive('/')
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('scroll', onScroll)
+    }
+  }, [])
+
+  // Lock body scroll when mobile menu open
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [open])
 
   const handleNav = (href: string) => {
     setOpen(false)
     setActive(href)
+    if (href === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      return
+    }
     if (href.startsWith('#')) {
       const el = document.querySelector(href)
       if (el) {
-        const top = el.getBoundingClientRect().top + window.scrollY - 80
+        const top = (el as HTMLElement).getBoundingClientRect().top + window.scrollY - 80
         window.scrollTo({ top, behavior: 'smooth' })
       }
     }
@@ -52,7 +92,7 @@ export default function Header() {
             {/* Logo */}
             <a
               href="/"
-              onClick={() => setActive('/')}
+              onClick={(e) => { e.preventDefault(); handleNav('/') }}
               className="flex items-center gap-3 group"
               aria-label="Início"
             >
@@ -79,7 +119,7 @@ export default function Header() {
                   key={link.href}
                   onClick={() => handleNav(link.href)}
                   className={cn(
-                    'px-4 py-2 text-sm font-sans font-medium tracking-wide transition-colors duration-200 rounded-sm',
+                    'relative px-4 py-2 text-sm font-sans font-medium tracking-wide transition-colors duration-200 rounded-sm',
                     'hover:text-gold dark:hover:text-gold-light',
                     active === link.href
                       ? 'text-gold dark:text-gold-light'
@@ -87,6 +127,13 @@ export default function Header() {
                   )}
                 >
                   {link.label}
+                  {/* Active indicator */}
+                  <span
+                    className={cn(
+                      'absolute bottom-0 left-4 right-4 h-px bg-gold transition-all duration-300',
+                      active === link.href ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
+                    )}
+                  />
                 </button>
               ))}
             </nav>
@@ -146,7 +193,7 @@ export default function Header() {
                     'text-left px-4 py-3 text-base font-sans font-medium rounded-sm transition-colors',
                     'hover:bg-cream-200 dark:hover:bg-charcoal-800 hover:text-gold',
                     active === link.href
-                      ? 'text-gold bg-cream-200 dark:bg-charcoal-800'
+                      ? 'text-gold bg-cream-200 dark:bg-charcoal-800 border-l-2 border-gold'
                       : 'text-charcoal-800 dark:text-charcoal-200'
                   )}
                 >
@@ -165,7 +212,7 @@ export default function Header() {
                 Agendar Consulta
               </a>
               <p className="text-2xs text-center text-charcoal-400 dark:text-charcoal-500 font-sans tracking-wide">
-                {SITE.oab} • Atendimento Presencial e Online
+                {SITE.oab} · Atendimento Presencial e Online
               </p>
             </div>
           </div>

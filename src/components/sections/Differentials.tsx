@@ -35,11 +35,11 @@ export default function Differentials() {
     <section
       id="diferenciais"
       ref={sectionRef}
-      className="section-padding bg-cream-100 dark:bg-charcoal-900 relative overflow-hidden"
+      className="section-padding bg-cream dark:bg-charcoal-950 relative overflow-hidden"
       aria-labelledby="diferenciais-title"
     >
       {/* Background */}
-      <div className="absolute inset-0 texture-diagonal opacity-60 dark:opacity-30" aria-hidden />
+      <div className="absolute inset-0 texture-diagonal opacity-40 dark:opacity-20" aria-hidden />
       <div className="absolute right-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-gold/20 to-transparent hidden lg:block" aria-hidden />
 
       <div className="container-wide relative z-10">

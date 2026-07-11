@@ -104,7 +104,7 @@ export default function FAQ() {
     <section
       id="faq"
       ref={sectionRef}
-      className="section-padding bg-cream-100 dark:bg-charcoal-900 relative overflow-hidden"
+      className="section-padding bg-cream dark:bg-charcoal-950 relative overflow-hidden"
       aria-labelledby="faq-title"
     >
       <div className="absolute inset-0 texture-diagonal opacity-50 dark:opacity-20" aria-hidden />

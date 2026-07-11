@@ -9,6 +9,7 @@ import BlogPreview from '@/components/sections/BlogPreview'
 import FAQ from '@/components/sections/FAQ'
 import Contact from '@/components/sections/Contact'
 import CallToAction from '@/components/sections/CallToAction'
+import WhatsAppFloat from '@/components/ui/WhatsAppFloat'
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <WhatsAppFloat />
     </>
   )
 }

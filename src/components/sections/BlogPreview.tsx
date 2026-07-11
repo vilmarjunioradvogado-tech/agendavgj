@@ -1,15 +1,9 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { ArrowRight, Clock, Tag } from 'lucide-react'
+import { ArrowRight, Clock } from 'lucide-react'
 import { BLOG_POSTS } from '@/lib/constants'
 import { formatDate, cn } from '@/lib/utils'
-
-const categoryColors: Record<string, string> = {
-  'Direito Digital':    'text-emerald-400 bg-emerald-950/50 border-emerald-800/50',
-  'Direito da Saúde':  'text-rose-400 bg-rose-950/50 border-rose-800/50',
-  'Direito do Consumidor': 'text-blue-400 bg-blue-950/50 border-blue-800/50',
-}
 
 export default function BlogPreview() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -44,10 +38,7 @@ export default function BlogPreview() {
           <div>
             <span className="section-label">Conteúdo Jurídico</span>
             <span className="divider-gold" />
-            <h2
-              id="blog-title"
-              className="section-title mt-4"
-            >
+            <h2 id="blog-title" className="section-title mt-4">
               Blog &amp;{' '}
               <span className="italic font-light text-gold">Artigos</span>
             </h2>
@@ -66,47 +57,37 @@ export default function BlogPreview() {
           {BLOG_POSTS.map((post, i) => (
             <article
               key={post.id}
-              className={cn(
-                'reveal group card-base rounded-sm overflow-hidden flex flex-col',
-                i === 0 ? 'md:col-span-1 md:row-span-1' : ''
-              )}
+              className="reveal group card-base rounded-sm overflow-hidden flex flex-col card-hover"
               style={{ transitionDelay: `${i * 100}ms` }}
             >
-              {/* Category image area */}
-              <div className="aspect-[16/9] bg-cream-200 dark:bg-charcoal-900 relative overflow-hidden flex-shrink-0">
-                <div className={cn(
-                  'absolute inset-0 flex items-center justify-center',
-                  i === 0 ? 'bg-gradient-to-br from-emerald-950 to-charcoal-950' :
-                  i === 1 ? 'bg-gradient-to-br from-rose-950 to-charcoal-950' :
-                            'bg-gradient-to-br from-blue-950 to-charcoal-950'
-                )}>
-                  {/* SVG pattern */}
-                  <svg viewBox="0 0 400 225" fill="none" className="w-full h-full opacity-60 absolute inset-0">
-                    {[...Array(8)].map((_, j) => (
-                      <line
-                        key={j}
-                        x1={-50 + j * 60}
-                        y1="0"
-                        x2={150 + j * 60}
-                        y2="225"
-                        stroke="rgba(196,149,42,0.06)"
-                        strokeWidth="1"
-                      />
-                    ))}
-                    <rect x="0" y="215" width="400" height="10" fill="rgba(196,149,42,0.3)" />
-                  </svg>
-                  <Tag className="w-8 h-8 text-gold/40" aria-hidden />
-                </div>
+              {/* Image area */}
+              <div className="aspect-[16/9] bg-charcoal-900 relative overflow-hidden flex-shrink-0">
+                {/* Subtle geometric pattern */}
+                <svg viewBox="0 0 400 225" fill="none" className="w-full h-full absolute inset-0">
+                  <rect width="400" height="225" fill="#1C1F28" />
+                  {[...Array(8)].map((_, j) => (
+                    <line
+                      key={j}
+                      x1={-50 + j * 60}
+                      y1="0"
+                      x2={150 + j * 60}
+                      y2="225"
+                      stroke="rgba(196,149,42,0.07)"
+                      strokeWidth="1"
+                    />
+                  ))}
+                  <rect x="0" y="215" width="400" height="10" fill="rgba(196,149,42,0.35)" />
+                </svg>
 
-                {/* Category badge */}
-                <div className="absolute top-3 left-3">
-                  <span className={cn(
-                    'text-2xs font-sans font-semibold tracking-widest uppercase px-2.5 py-1 border rounded-sm',
-                    categoryColors[post.category] ?? 'text-gold bg-charcoal-900 border-charcoal-700'
-                  )}>
+                {/* Category badge — unified gold style */}
+                <div className="absolute top-3 left-3 z-10">
+                  <span className="text-2xs font-sans font-semibold tracking-widest uppercase px-2.5 py-1 border rounded-sm text-gold bg-charcoal-950/80 border-gold/40">
                     {post.category}
                   </span>
                 </div>
+
+                {/* Hover overlay */}
+                <div className="absolute inset-0 bg-gold/0 group-hover:bg-gold/5 transition-colors duration-300" />
               </div>
 
               {/* Content */}
