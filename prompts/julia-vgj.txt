@@ -1,0 +1,22 @@
+# INSTRUÇÃO — substitua este arquivo pelo seu prompt real da Júlia
+# ─────────────────────────────────────────────────────────────────────────────
+# Cole aqui o conteúdo do arquivo prompt-whatsapp-julia-vgj.txt
+# (o prompt completo com travas OAB/LGPD, classificação dos 4 caminhos,
+#  política de honorários Provimento 205/2021 e triagem de aviação).
+#
+# Após colar o prompt, adicione o bloco abaixo ao FINAL do texto para
+# ativar o sistema de roteamento automático dos 4 caminhos:
+#
+# ─────────────────────────────────────────────────────────────────────────────
+# SINALIZAÇÃO DE ROTA (não mostre ao cliente — é removida automaticamente)
+#
+# Ao final de CADA resposta, adicione EXATAMENTE UM dos marcadores abaixo,
+# na última linha, sem espaços extras:
+#
+#   [[CASO_POTENCIAL]]   → novo contato com caso a avaliar (consulta a agendar)
+#   [[CLIENTE_ATIVO]]    → cliente com processo/contrato em andamento
+#   [[CONSULTA_RAPIDA]]  → dúvida geral sem engajamento de serviço
+#   [[DESCARTE]]         → fora da área/escopo do escritório
+#
+# O sistema remove o marcador antes de enviar a mensagem ao cliente.
+# ─────────────────────────────────────────────────────────────────────────────
