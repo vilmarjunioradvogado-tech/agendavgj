@@ -3,150 +3,343 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Direito com IA na Prática — Vilmar Junior | Cursos de Inteligência Artificial para Advogados</title>
-<meta name="description" content="Cursos práticos de Inteligência Artificial aplicada ao Direito, ministrados pelo advogado Vilmar Junior. Aprenda a usar IA generativa com segurança, sigilo profissional e produtividade real.">
+<title>Vilmar Junior · Direito & IA — Inteligência Artificial aplicada à prática jurídica</title>
+<meta name="description" content="Cursos práticos de Inteligência Artificial aplicada ao Direito, ministrados pelo advogado Vilmar Junior. IA generativa com segurança, sigilo profissional e produtividade real.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#0f1b2d;
-    --navy-2:#16263f;
-    --navy-3:#1e3252;
-    --gold:#c9a227;
-    --gold-light:#e6c85c;
-    --ink:#1c2433;
-    --muted:#5b6779;
-    --bg:#f7f8fa;
-    --card:#ffffff;
-    --line:#e4e8ee;
-    --ok:#1e7f4f;
-    --radius:14px;
-    --shadow:0 10px 30px rgba(15,27,45,.10);
+    --bg:#0b1120;
+    --bg-2:#0e1628;
+    --surface:#131d33;
+    --surface-2:#182541;
+    --line:rgba(148,163,197,.14);
+    --line-strong:rgba(148,163,197,.28);
+    --text:#e8edf7;
+    --text-soft:#9aa7c0;
+    --text-dim:#6b7a99;
+    --gold:#d9b24a;
+    --gold-soft:#eccf7e;
+    --gold-deep:#a8842b;
+    --green:#4ade80;
+    --radius:18px;
+    --font-display:"Fraunces",Georgia,serif;
+    --font-body:"Inter",system-ui,-apple-system,sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{font-family:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
-  h1,h2,h3,.brand{font-family:Georgia,'Times New Roman',serif}
-  img{max-width:100%}
+  body{
+    font-family:var(--font-body);
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:rgba(217,178,74,.35)}
+  img{max-width:100%;display:block}
   a{color:inherit}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
-  .btn{display:inline-block;padding:14px 28px;border-radius:8px;font-weight:600;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease;cursor:pointer;border:none;font-size:1rem}
-  .btn:hover{transform:translateY(-2px)}
-  .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy);box-shadow:0 6px 18px rgba(201,162,39,.35)}
-  .btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}
-  .btn-ghost:hover{border-color:var(--gold-light);color:var(--gold-light)}
-  .btn-navy{background:var(--navy);color:#fff}
-  .tag{display:inline-block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px}
-  section{padding:80px 0}
-  .section-head{max-width:720px;margin:0 auto 48px;text-align:center}
-  .section-head h2{font-size:clamp(1.6rem,3.5vw,2.3rem);color:var(--navy);margin-bottom:14px}
-  .section-head p{color:var(--muted);font-size:1.05rem}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
 
-  /* ---------- Header ---------- */
-  header{position:sticky;top:0;z-index:50;background:rgba(15,27,45,.96);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.08)}
-  .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
-  .brand{color:#fff;font-size:1.15rem;font-weight:700;text-decoration:none}
-  .brand span{color:var(--gold)}
-  .nav-links{display:flex;gap:26px;list-style:none;align-items:center}
-  .nav-links a{color:#d6dce6;text-decoration:none;font-size:.92rem}
-  .nav-links a:hover{color:var(--gold-light)}
-  .nav-cta{padding:9px 18px !important;border-radius:7px;background:var(--gold);color:var(--navy) !important;font-weight:700}
-  @media(max-width:760px){.nav-links li:not(:last-child){display:none}}
+  /* ---------- type ---------- */
+  h1,h2,h3{font-family:var(--font-display);font-weight:600;letter-spacing:-.01em;line-height:1.15}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:18px;
+  }
+  .eyebrow::before{content:"";width:24px;height:1px;background:var(--gold)}
 
-  /* ---------- Hero ---------- */
-  .hero{background:radial-gradient(1200px 600px at 75% -10%,var(--navy-3),transparent),linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;padding:96px 0 88px;position:relative;overflow:hidden}
-  .hero::after{content:"§";position:absolute;right:-40px;bottom:-90px;font-family:Georgia,serif;font-size:26rem;color:rgba(255,255,255,.04);line-height:1;pointer-events:none}
-  .hero .wrap{position:relative;z-index:1;max-width:820px}
-  .hero .tag{color:var(--gold-light)}
-  .hero h1{font-size:clamp(2rem,5vw,3.1rem);line-height:1.18;margin-bottom:20px}
-  .hero h1 em{font-style:normal;color:var(--gold-light)}
-  .hero p.lead{font-size:1.15rem;color:#c3ccda;max-width:640px;margin-bottom:34px}
-  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:44px}
-  .hero-proof{display:flex;gap:28px;flex-wrap:wrap}
-  .hero-proof div{display:flex;align-items:center;gap:9px;color:#c3ccda;font-size:.95rem}
-  .hero-proof .check{color:var(--gold-light);font-weight:700}
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    padding:15px 30px;border-radius:999px;font-weight:600;font-size:.95rem;
+    text-decoration:none;cursor:pointer;border:none;
+    transition:transform .2s cubic-bezier(.2,.8,.3,1),box-shadow .2s,background .2s,border-color .2s,color .2s;
+    white-space:nowrap;
+  }
+  .btn:active{transform:scale(.97)}
+  .btn-gold{
+    background:linear-gradient(120deg,var(--gold-soft) 0%,var(--gold) 45%,var(--gold-deep) 100%);
+    color:#161006;box-shadow:0 8px 26px rgba(217,178,74,.28),inset 0 1px 0 rgba(255,255,255,.5);
+  }
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(217,178,74,.4),inset 0 1px 0 rgba(255,255,255,.5)}
+  .btn-outline{background:rgba(255,255,255,.03);color:var(--text);border:1px solid var(--line-strong)}
+  .btn-outline:hover{border-color:var(--gold);color:var(--gold-soft);transform:translateY(-2px)}
+  .btn-block{width:100%}
+  .btn-sm{padding:10px 22px;font-size:.86rem}
 
-  /* ---------- Para quem é ---------- */
-  .grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
-  .persona{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;box-shadow:var(--shadow)}
-  .persona .icon{font-size:1.9rem;margin-bottom:14px;display:block}
-  .persona h3{color:var(--navy);font-size:1.1rem;margin-bottom:8px}
-  .persona p{color:var(--muted);font-size:.93rem}
+  /* ---------- header ---------- */
+  header{
+    position:fixed;inset:0 0 auto;z-index:100;
+    background:rgba(11,17,32,.72);
+    backdrop-filter:blur(16px) saturate(1.4);
+    -webkit-backdrop-filter:blur(16px) saturate(1.4);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .brand-mark{
+    width:38px;height:38px;border-radius:11px;flex-shrink:0;
+    background:linear-gradient(135deg,var(--gold-soft),var(--gold-deep));
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-display);font-weight:700;font-size:1.15rem;color:#161006;
+    box-shadow:0 4px 14px rgba(217,178,74,.3);
+  }
+  .brand-name{font-weight:700;font-size:1rem;letter-spacing:-.01em}
+  .brand-name small{display:block;font-weight:500;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+  .nav-links{display:flex;gap:34px;list-style:none;align-items:center}
+  .nav-links a{color:var(--text-soft);text-decoration:none;font-size:.9rem;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--gold-soft)}
+  .menu-btn{display:none;background:none;border:none;color:var(--text);font-size:1.6rem;cursor:pointer;line-height:1}
+  @media(max-width:860px){
+    .nav-links{
+      display:none;position:absolute;top:72px;left:0;right:0;
+      flex-direction:column;gap:0;align-items:stretch;
+      background:rgba(11,17,32,.97);backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--line);padding:10px 24px 22px;
+    }
+    .nav-links.open{display:flex}
+    .nav-links li{padding:12px 0;border-bottom:1px solid var(--line)}
+    .nav-links li:last-child{border:none;padding-top:18px}
+    .menu-btn{display:block}
+  }
 
-  /* ---------- Cursos ---------- */
-  #cursos{background:linear-gradient(180deg,var(--bg),#eef1f5)}
-  .courses{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:26px}
-  .course{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px;display:flex;flex-direction:column;box-shadow:var(--shadow);position:relative}
-  .course.featured{border:2px solid var(--gold);box-shadow:0 14px 40px rgba(201,162,39,.22)}
-  .ribbon{position:absolute;top:-13px;right:22px;background:var(--gold);color:var(--navy);font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:5px 14px;border-radius:20px}
-  .course .aud{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px}
-  .course h3{color:var(--navy);font-size:1.28rem;margin-bottom:10px}
-  .course p.desc{color:var(--muted);font-size:.95rem;margin-bottom:18px}
-  .course ul{list-style:none;margin-bottom:22px;flex:1}
-  .course ul li{padding:6px 0;font-size:.93rem;display:flex;gap:10px}
-  .course ul li::before{content:"✓";color:var(--ok);font-weight:800;flex-shrink:0}
-  .price-old{color:var(--muted);text-decoration:line-through;font-size:.95rem}
-  .price{font-size:1.9rem;font-weight:800;color:var(--navy);font-family:Georgia,serif}
-  .installments{color:var(--muted);font-size:.9rem;margin-bottom:18px}
-  .course .btn{text-align:center}
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:190px 0 130px;
+    background:
+      radial-gradient(900px 500px at 85% -10%,rgba(217,178,74,.14),transparent 65%),
+      radial-gradient(700px 500px at -10% 30%,rgba(59,86,158,.22),transparent 60%),
+      var(--bg);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:
+      linear-gradient(rgba(148,163,197,.05) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(148,163,197,.05) 1px,transparent 1px);
+    background-size:56px 56px;
+    mask-image:radial-gradient(800px 500px at 50% 0%,black 30%,transparent 80%);
+    -webkit-mask-image:radial-gradient(800px 500px at 50% 0%,black 30%,transparent 80%);
+  }
+  .hero .wrap{position:relative;max-width:880px;text-align:center}
+  .hero-pill{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:8px 18px;border-radius:999px;margin-bottom:28px;
+    background:rgba(217,178,74,.08);border:1px solid rgba(217,178,74,.3);
+    font-size:.8rem;font-weight:600;color:var(--gold-soft);
+  }
+  .hero-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+  .hero h1{font-size:clamp(2.4rem,5.6vw,4rem);margin-bottom:24px}
+  .hero h1 em{
+    font-style:italic;
+    background:linear-gradient(110deg,var(--gold-soft),var(--gold) 60%,var(--gold-deep));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero .lead{font-size:1.13rem;color:var(--text-soft);max-width:640px;margin:0 auto 40px}
+  .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:56px}
+  .hero-proof{
+    display:flex;justify-content:center;gap:14px;flex-wrap:wrap;
+  }
+  .proof-chip{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:10px 20px;border-radius:999px;
+    background:rgba(255,255,255,.03);border:1px solid var(--line);
+    font-size:.85rem;color:var(--text-soft);font-weight:500;
+  }
+  .proof-chip svg{width:15px;height:15px;stroke:var(--gold);flex-shrink:0}
 
-  /* ---------- Professor ---------- */
-  #professor{background:var(--navy);color:#fff}
-  #professor .section-head h2{color:#fff}
-  #professor .section-head p{color:#aeb8c8}
-  .prof{display:grid;grid-template-columns:280px 1fr;gap:44px;align-items:start;max-width:940px;margin:0 auto}
-  .prof-photo{aspect-ratio:4/5;border-radius:var(--radius);background:linear-gradient(160deg,var(--navy-3),var(--navy-2));border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;color:#8fa0b8;font-size:.9rem;text-align:center;padding:20px}
-  .prof-info h3{font-size:1.6rem;margin-bottom:6px;color:var(--gold-light)}
-  .prof-info .role{color:#aeb8c8;font-size:.98rem;margin-bottom:18px}
-  .prof-info p{color:#d6dce6;margin-bottom:14px;font-size:.98rem}
-  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:18px;margin-top:56px;text-align:center}
-  .stat b{display:block;font-size:2.1rem;color:var(--gold-light);font-family:Georgia,serif}
-  .stat span{color:#aeb8c8;font-size:.9rem}
-  @media(max-width:760px){.prof{grid-template-columns:1fr}.prof-photo{max-width:280px;margin:0 auto}}
+  /* ---------- sections ---------- */
+  section{padding:104px 0;position:relative}
+  .section-head{max-width:680px;margin-bottom:60px}
+  .section-head.center{margin-inline:auto;text-align:center}
+  .section-head.center .eyebrow{justify-content:center}
+  .section-head.center .eyebrow::before{display:none}
+  .section-head h2{font-size:clamp(1.8rem,3.6vw,2.6rem);margin-bottom:16px}
+  .section-head p{color:var(--text-soft);font-size:1.05rem}
 
-  /* ---------- Metodologia ---------- */
-  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;counter-reset:step}
-  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;box-shadow:var(--shadow);counter-increment:step}
-  .step::before{content:counter(step,decimal-leading-zero);font-family:Georgia,serif;font-size:1.6rem;font-weight:700;color:var(--gold);display:block;margin-bottom:10px}
-  .step h3{color:var(--navy);font-size:1.08rem;margin-bottom:8px}
-  .step p{color:var(--muted);font-size:.93rem}
+  /* ---------- para quem ---------- */
+  .personas{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:18px}
+  .persona{
+    background:linear-gradient(160deg,var(--surface),var(--bg-2));
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:30px 26px;transition:transform .25s,border-color .25s,box-shadow .25s;
+  }
+  .persona:hover{transform:translateY(-5px);border-color:rgba(217,178,74,.4);box-shadow:0 20px 44px rgba(0,0,0,.35)}
+  .persona .p-icon{
+    width:48px;height:48px;border-radius:13px;margin-bottom:18px;
+    background:rgba(217,178,74,.1);border:1px solid rgba(217,178,74,.25);
+    display:flex;align-items:center;justify-content:center;font-size:1.35rem;
+  }
+  .persona h3{font-size:1.12rem;margin-bottom:8px;font-family:var(--font-body);font-weight:700;letter-spacing:0}
+  .persona p{color:var(--text-soft);font-size:.9rem}
+
+  /* ---------- cursos ---------- */
+  #cursos{
+    background:
+      radial-gradient(800px 400px at 50% 0%,rgba(59,86,158,.14),transparent 70%),
+      var(--bg-2);
+    border-block:1px solid var(--line);
+  }
+  .courses{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:22px}
+  .course{
+    position:relative;display:flex;flex-direction:column;
+    background:linear-gradient(165deg,var(--surface) 0%,var(--bg-2) 100%);
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:34px 30px;
+    transition:transform .25s,border-color .25s,box-shadow .25s;
+  }
+  .course:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(0,0,0,.4)}
+  .course.featured{
+    background:linear-gradient(165deg,#1a2440 0%,#141c33 100%);
+    border:1px solid rgba(217,178,74,.5);
+    box-shadow:0 0 0 1px rgba(217,178,74,.15),0 18px 46px rgba(0,0,0,.45);
+  }
+  .course.featured:hover{border-color:var(--gold)}
+  .ribbon{
+    position:absolute;top:-13px;left:30px;
+    background:linear-gradient(120deg,var(--gold-soft),var(--gold));
+    color:#161006;font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+    padding:6px 16px;border-radius:999px;box-shadow:0 6px 16px rgba(217,178,74,.35);
+  }
+  .course .aud{font-size:.72rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+  .course h3{font-size:1.35rem;margin-bottom:12px}
+  .course .desc{color:var(--text-soft);font-size:.93rem;margin-bottom:22px}
+  .course ul{list-style:none;margin-bottom:26px;flex:1;display:flex;flex-direction:column;gap:10px}
+  .course ul li{display:flex;gap:11px;font-size:.9rem;color:#c6cfe2;align-items:flex-start}
+  .course ul li svg{width:17px;height:17px;stroke:var(--green);flex-shrink:0;margin-top:3px}
+  .price-row{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .price-old{color:var(--text-dim);text-decoration:line-through;font-size:.92rem}
+  .price{font-family:var(--font-display);font-size:2.1rem;font-weight:700;color:var(--text)}
+  .price small{font-size:1rem;font-weight:500;color:var(--text-soft)}
+  .installments{color:var(--text-dim);font-size:.86rem;margin:2px 0 22px}
+
+  /* ---------- método ---------- */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;counter-reset:step}
+  .step{
+    background:linear-gradient(160deg,var(--surface),var(--bg-2));
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:32px 28px;counter-increment:step;position:relative;overflow:hidden;
+  }
+  .step::before{
+    content:"0" counter(step);
+    position:absolute;top:14px;right:20px;
+    font-family:var(--font-display);font-size:3.4rem;font-weight:700;
+    color:rgba(217,178,74,.1);line-height:1;
+  }
+  .step h3{font-size:1.08rem;margin-bottom:10px;font-family:var(--font-body);font-weight:700;color:var(--gold-soft)}
+  .step p{color:var(--text-soft);font-size:.9rem;position:relative}
+
+  /* ---------- professor ---------- */
+  #professor{
+    background:
+      radial-gradient(700px 400px at 10% 20%,rgba(217,178,74,.08),transparent 60%),
+      var(--bg-2);
+    border-block:1px solid var(--line);
+  }
+  .prof{display:grid;grid-template-columns:340px 1fr;gap:60px;align-items:center}
+  .prof-photo{
+    position:relative;aspect-ratio:4/5;border-radius:22px;
+    background:linear-gradient(160deg,var(--surface-2),var(--surface));
+    border:1px solid var(--line-strong);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+    color:var(--text-dim);font-size:.85rem;text-align:center;padding:24px;
+  }
+  .prof-photo::after{
+    content:"";position:absolute;inset:-14px auto auto -14px;width:70px;height:70px;
+    border-top:2px solid var(--gold);border-left:2px solid var(--gold);border-radius:22px 0 0 0;
+  }
+  .prof-photo::before{
+    content:"";position:absolute;inset:auto -14px -14px auto;width:70px;height:70px;
+    border-bottom:2px solid var(--gold);border-right:2px solid var(--gold);border-radius:0 0 22px 0;
+  }
+  .prof-photo .ph-icon{font-size:2.6rem;opacity:.5}
+  .prof-info h3{font-size:2rem;margin-bottom:6px}
+  .prof-info .role{color:var(--gold-soft);font-size:.92rem;font-weight:600;margin-bottom:22px}
+  .prof-info p{color:var(--text-soft);margin-bottom:16px;font-size:.98rem}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px;margin-top:72px}
+  .stat{
+    text-align:center;padding:28px 18px;border-radius:var(--radius);
+    background:rgba(255,255,255,.02);border:1px solid var(--line);
+  }
+  .stat b{display:block;font-family:var(--font-display);font-size:2.3rem;font-weight:700;color:var(--gold-soft);line-height:1.1;margin-bottom:6px}
+  .stat span{color:var(--text-dim);font-size:.84rem;font-weight:500;letter-spacing:.04em}
+  @media(max-width:860px){.prof{grid-template-columns:1fr;gap:44px}.prof-photo{max-width:300px;margin:0 auto}}
 
   /* ---------- FAQ ---------- */
-  .faq{max-width:760px;margin:0 auto}
-  .faq details{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:12px;overflow:hidden}
-  .faq summary{padding:18px 22px;font-weight:600;color:var(--navy);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .faq{max-width:740px;margin:0 auto}
+  .faq details{
+    background:linear-gradient(160deg,var(--surface),var(--bg-2));
+    border:1px solid var(--line);border-radius:14px;margin-bottom:12px;
+    transition:border-color .2s;
+  }
+  .faq details[open]{border-color:rgba(217,178,74,.35)}
+  .faq summary{
+    padding:20px 24px;font-weight:600;font-size:.98rem;cursor:pointer;list-style:none;
+    display:flex;justify-content:space-between;align-items:center;gap:18px;
+  }
   .faq summary::-webkit-details-marker{display:none}
-  .faq summary::after{content:"+";font-size:1.4rem;color:var(--gold);font-weight:400;transition:transform .2s}
+  .faq summary::after{
+    content:"+";font-family:var(--font-display);font-size:1.5rem;color:var(--gold);
+    font-weight:400;transition:transform .25s;flex-shrink:0;line-height:1;
+  }
   .faq details[open] summary::after{transform:rotate(45deg)}
-  .faq .answer{padding:0 22px 20px;color:var(--muted);font-size:.95rem}
+  .faq .answer{padding:0 24px 22px;color:var(--text-soft);font-size:.93rem}
 
   /* ---------- CTA final ---------- */
-  .cta-final{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-3) 100%);color:#fff;text-align:center;border-radius:var(--radius);padding:64px 32px;box-shadow:var(--shadow)}
-  .cta-final h2{font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:14px}
-  .cta-final p{color:#c3ccda;max-width:560px;margin:0 auto 30px}
-  .cta-final .btn{margin:0 8px 10px}
+  .cta-final{
+    position:relative;overflow:hidden;text-align:center;
+    border-radius:26px;padding:80px 36px;
+    background:
+      radial-gradient(600px 300px at 50% -20%,rgba(217,178,74,.22),transparent 70%),
+      linear-gradient(165deg,#1a2440,#101828);
+    border:1px solid rgba(217,178,74,.3);
+  }
+  .cta-final h2{font-size:clamp(1.7rem,3.4vw,2.5rem);margin-bottom:16px}
+  .cta-final h2 em{font-style:italic;color:var(--gold-soft)}
+  .cta-final p{color:var(--text-soft);max-width:520px;margin:0 auto 36px}
+  .cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 
-  /* ---------- Footer ---------- */
-  footer{background:var(--navy);color:#aeb8c8;padding:56px 0 32px;margin-top:80px}
-  .foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
-  .foot h4{color:#fff;font-size:1rem;margin-bottom:14px}
-  .foot p,.foot a{font-size:.92rem;color:#aeb8c8;text-decoration:none}
-  .foot a:hover{color:var(--gold-light)}
-  .foot ul{list-style:none}
-  .foot ul li{margin-bottom:8px}
-  .copyright{border-top:1px solid rgba(255,255,255,.1);padding-top:24px;text-align:center;font-size:.85rem;color:#7e8ba0}
-  @media(max-width:760px){.foot{grid-template-columns:1fr}}
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding:64px 0 36px;background:var(--bg)}
+  .foot{display:grid;grid-template-columns:2.2fr 1fr 1.3fr;gap:48px;margin-bottom:48px}
+  .foot h4{font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+  .foot p{font-size:.9rem;color:var(--text-soft)}
+  .foot ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .foot a{font-size:.9rem;color:var(--text-soft);text-decoration:none;transition:color .2s}
+  .foot a:hover{color:var(--gold-soft)}
+  .foot .brand{margin-bottom:18px}
+  .copyright{border-top:1px solid var(--line);padding-top:28px;text-align:center;font-size:.82rem;color:var(--text-dim)}
+  @media(max-width:760px){.foot{grid-template-columns:1fr;gap:36px}}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
 </style>
 </head>
 <body>
 
 <header>
   <nav class="nav wrap">
-    <a class="brand" href="#">Vilmar Junior <span>· Direito &amp; IA</span></a>
-    <ul class="nav-links">
+    <a class="brand" href="#">
+      <span class="brand-mark">VJ</span>
+      <span class="brand-name">Vilmar Junior<small>Direito &amp; IA</small></span>
+    </a>
+    <button class="menu-btn" aria-label="Abrir menu" onclick="document.getElementById('nav-links').classList.toggle('open')">☰</button>
+    <ul class="nav-links" id="nav-links">
       <li><a href="#para-quem">Para quem é</a></li>
       <li><a href="#cursos">Cursos</a></li>
+      <li><a href="#metodo">Método</a></li>
       <li><a href="#professor">Professor</a></li>
       <li><a href="#faq">FAQ</a></li>
-      <li><a class="nav-cta" href="#cursos">Ver cursos</a></li>
+      <li><a class="btn btn-gold btn-sm" href="#cursos">Ver cursos</a></li>
     </ul>
   </nav>
 </header>
@@ -154,17 +347,18 @@
 <!-- ==================== HERO ==================== -->
 <section class="hero">
   <div class="wrap">
-    <span class="tag">Vilmar Junior · Educação Jurídica</span>
-    <h1>Inteligência Artificial aplicada ao Direito — <em>na prática, com método.</em></h1>
-    <p class="lead">Capacitação para profissionais do Direito que querem usar IA generativa com segurança, sigilo profissional e produtividade real no dia a dia forense. Nada de tutoriais genéricos: casos reais, peças reais, rotina real de escritório.</p>
+    <div class="hero-pill"><span class="dot"></span> Turmas com acesso imediato · 100% online</div>
+    <h1>Inteligência Artificial aplicada ao Direito, <em>na prática e com método.</em></h1>
+    <p class="lead">Aprenda a usar IA generativa com segurança, sigilo profissional e produtividade real no dia a dia forense. Nada de tutoriais genéricos: casos reais, peças reais, rotina real de escritório.</p>
     <div class="hero-actions">
       <a class="btn btn-gold" href="#cursos">Conheça os cursos</a>
-      <a class="btn btn-ghost" href="#professor">Conheça o professor</a>
+      <a class="btn btn-outline" href="#professor">Conheça o professor</a>
     </div>
     <div class="hero-proof">
-      <div><span class="check">✓</span> Conteúdo 100% jurídico</div>
-      <div><span class="check">✓</span> Acesso por 1 ano</div>
-      <div><span class="check">✓</span> Certificado de conclusão</div>
+      <span class="proof-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Conteúdo 100% jurídico</span>
+      <span class="proof-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Acesso por 1 ano</span>
+      <span class="proof-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Certificado de conclusão</span>
+      <span class="proof-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Foco em sigilo e LGPD</span>
     </div>
   </div>
 </section>
@@ -172,29 +366,29 @@
 <!-- ==================== PARA QUEM É ==================== -->
 <section id="para-quem">
   <div class="wrap">
-    <div class="section-head">
-      <span class="tag">Para quem é</span>
-      <h2>Profissionais do Direito que querem usar IA com método</h2>
+    <div class="section-head center reveal">
+      <span class="eyebrow">Para quem é</span>
+      <h2>Feito para quem vive o Direito todos os dias</h2>
       <p>Cursos pensados para quem precisa de IA aplicada à prática jurídica — e não de mais um tutorial genérico de tecnologia.</p>
     </div>
-    <div class="grid-4">
-      <div class="persona">
-        <span class="icon">⚖️</span>
+    <div class="personas">
+      <div class="persona reveal">
+        <div class="p-icon">⚖️</div>
         <h3>Advogados</h3>
         <p>Peças bem fundamentadas, análise de processos e produtividade real no escritório — sempre com sigilo profissional.</p>
       </div>
-      <div class="persona">
-        <span class="icon">📚</span>
-        <h3>Estudantes e recém-aprovados na OAB</h3>
+      <div class="persona reveal">
+        <div class="p-icon">📚</div>
+        <h3>Estudantes e recém-aprovados</h3>
         <p>Comece a carreira já dominando as ferramentas que estão transformando a advocacia.</p>
       </div>
-      <div class="persona">
-        <span class="icon">🏢</span>
+      <div class="persona reveal">
+        <div class="p-icon">🏢</div>
         <h3>Departamentos jurídicos</h3>
         <p>Padronização de minutas, análise contratual em escala e fluxos de trabalho assistidos por IA.</p>
       </div>
-      <div class="persona">
-        <span class="icon">🏛️</span>
+      <div class="persona reveal">
+        <div class="p-icon">🏛️</div>
         <h3>Servidores e assessores</h3>
         <p>Pesquisa jurisprudencial assistida, sumarização de autos e organização de gabinete com IA.</p>
       </div>
@@ -205,118 +399,116 @@
 <!-- ==================== CURSOS ==================== -->
 <section id="cursos">
   <div class="wrap">
-    <div class="section-head">
-      <span class="tag">Catálogo de cursos</span>
+    <div class="section-head center reveal">
+      <span class="eyebrow">Catálogo de cursos</span>
       <h2>Escolha a sua trilha de IA no Direito</h2>
       <p>Treinamentos 100% online e práticos, com casos reais e foco em segurança e sigilo profissional.</p>
     </div>
     <div class="courses">
 
       <!-- EDITAR: preços, links de checkout e conteúdo de cada card -->
-      <div class="course">
-        <span class="aud">Para quem está começando do zero</span>
-        <h3>IA na Advocacia — Módulo 1: Fundamentos</h3>
-        <p class="desc">Os fundamentos práticos: cadastro seguro, configurações de privacidade e engenharia de prompts jurídicos para usar IA no dia a dia com sigilo profissional.</p>
+      <div class="course reveal">
+        <span class="aud">Para começar do zero</span>
+        <h3>Módulo 1 · Fundamentos</h3>
+        <p class="desc">Cadastro seguro, configurações de privacidade e engenharia de prompts jurídicos para usar IA no dia a dia com sigilo profissional.</p>
         <ul>
-          <li>Cadastro seguro e configurações de privacidade</li>
-          <li>Engenharia de prompts para o Direito</li>
-          <li>Práticas guiadas com casos reais</li>
-          <li>Suporte por 1 ano</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Cadastro seguro e privacidade</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Engenharia de prompts para o Direito</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Práticas guiadas com casos reais</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Suporte por 1 ano</li>
         </ul>
-        <div class="price">R$ 297</div>
+        <div class="price-row"><span class="price"><small>R$</small> 297</span></div>
         <div class="installments">ou 12x de R$ 29,60</div>
-        <a class="btn btn-navy" href="#contato">Quero este curso</a>
+        <a class="btn btn-outline btn-block" href="#contato">Quero este curso</a>
       </div>
 
-      <div class="course">
+      <div class="course reveal">
         <span class="aud">Para quem concluiu o Módulo 1</span>
-        <h3>IA na Advocacia — Módulo 2: Peças e Análise Documental</h3>
-        <p class="desc">Análise documental avançada, sumarização e fichamento de processos longos e construção de peças completas com IA, do rascunho à revisão final.</p>
+        <h3>Módulo 2 · Peças e Análise Documental</h3>
+        <p class="desc">Análise documental avançada, sumarização de processos longos e construção de peças completas com IA, do rascunho à revisão final.</p>
         <ul>
-          <li>Análise de processos extensos com IA</li>
-          <li>Sumarização e fichamento jurídico</li>
-          <li>Templates avançados de peças processuais</li>
-          <li>Revisão e conferência de fundamentação</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Análise de processos extensos</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Sumarização e fichamento jurídico</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Templates avançados de peças</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Revisão de fundamentação</li>
         </ul>
-        <div class="price">R$ 297</div>
+        <div class="price-row"><span class="price"><small>R$</small> 297</span></div>
         <div class="installments">ou 12x de R$ 29,60</div>
-        <a class="btn btn-navy" href="#contato">Quero este curso</a>
+        <a class="btn btn-outline btn-block" href="#contato">Quero este curso</a>
       </div>
 
-      <div class="course featured">
+      <div class="course featured reveal">
         <span class="ribbon">Recomendado</span>
         <span class="aud">Do zero à prática avançada</span>
-        <h3>Combo — Módulos 1 e 2</h3>
-        <p class="desc">Os dois módulos em um único pacote com desconto: saia do zero e chegue à produção de peças e análise documental avançada com IA.</p>
+        <h3>Combo · Módulos 1 e 2</h3>
+        <p class="desc">Os dois módulos em um único pacote com desconto: saia do zero e chegue à produção de peças e análise documental avançada.</p>
         <ul>
-          <li>Tudo do Módulo 1 + Módulo 2</li>
-          <li>Aulas gravadas + materiais de apoio</li>
-          <li>1 ano de acesso à plataforma</li>
-          <li>Certificado de conclusão</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Tudo do Módulo 1 + Módulo 2</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Aulas gravadas + materiais de apoio</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>1 ano de acesso à plataforma</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Certificado de conclusão</li>
         </ul>
-        <div class="price-old">De R$ 594</div>
-        <div class="price">R$ 447</div>
+        <div class="price-row"><span class="price-old">R$ 594</span><span class="price"><small>R$</small> 447</span></div>
         <div class="installments">ou 12x de R$ 44,55</div>
-        <a class="btn btn-gold" href="#contato">Quero este curso</a>
+        <a class="btn btn-gold btn-block" href="#contato">Quero este curso</a>
       </div>
 
-      <div class="course">
-        <span class="aud">Para quem quer automatizar a rotina</span>
-        <h3>IA na Advocacia — Módulo 3: Automação Jurídica</h3>
-        <p class="desc">Automação da prática jurídica: bases de conhecimento privadas, fluxos de produção de minutas e construção de assistentes especializados por área do Direito.</p>
+      <div class="course reveal">
+        <span class="aud">Para automatizar a rotina</span>
+        <h3>Módulo 3 · Automação Jurídica</h3>
+        <p class="desc">Bases de conhecimento privadas, fluxos de produção de minutas e construção de assistentes especializados por área do Direito.</p>
         <ul>
-          <li>Bases de conhecimento privadas do escritório</li>
-          <li>Automação de minutas e notificações</li>
-          <li>Assistentes jurídicos personalizados</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Bases de conhecimento do escritório</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Automação de minutas e notificações</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Assistentes jurídicos personalizados</li>
         </ul>
-        <div class="price">R$ 347</div>
+        <div class="price-row"><span class="price"><small>R$</small> 347</span></div>
         <div class="installments">ou 12x de R$ 34,60</div>
-        <a class="btn btn-navy" href="#contato">Quero este curso</a>
+        <a class="btn btn-outline btn-block" href="#contato">Quero este curso</a>
       </div>
 
-      <div class="course featured">
+      <div class="course featured reveal">
         <span class="ribbon">Mais completo</span>
-        <span class="aud">Formação completa de ponta a ponta</span>
-        <h3>Formação Completa — IA no Direito com Vilmar Junior</h3>
-        <p class="desc">Os 3 módulos juntos, com bônus de automação jurídica e peças completas construídas em vídeo, passo a passo. A trilha completa, do primeiro acesso ao escritório automatizado.</p>
+        <span class="aud">Formação de ponta a ponta</span>
+        <h3>Formação Completa · IA no Direito</h3>
+        <p class="desc">Os 3 módulos juntos, com bônus de automação jurídica e peças completas construídas em vídeo, passo a passo. Do primeiro acesso ao escritório automatizado.</p>
         <ul>
-          <li>Módulos 1, 2 e 3 completos</li>
-          <li>Bônus: peças construídas em vídeo</li>
-          <li>Bônus: automação jurídica na prática</li>
-          <li>1 ano de acesso + atualizações</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Módulos 1, 2 e 3 completos</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Bônus: peças construídas em vídeo</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Bônus: automação jurídica na prática</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>1 ano de acesso + atualizações</li>
         </ul>
-        <div class="price-old">De R$ 941</div>
-        <div class="price">R$ 697</div>
+        <div class="price-row"><span class="price-old">R$ 941</span><span class="price"><small>R$</small> 697</span></div>
         <div class="installments">ou 12x de R$ 69,45</div>
-        <a class="btn btn-gold" href="#contato">Quero este curso</a>
+        <a class="btn btn-gold btn-block" href="#contato">Quero este curso</a>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ==================== METODOLOGIA ==================== -->
+<!-- ==================== MÉTODO ==================== -->
 <section id="metodo">
   <div class="wrap">
-    <div class="section-head">
-      <span class="tag">Metodologia</span>
-      <h2>Como funciona o método</h2>
-      <p>Cada aula parte de uma situação real da prática forense e termina com um resultado concreto que você repete no seu próprio caso.</p>
+    <div class="section-head center reveal">
+      <span class="eyebrow">Metodologia</span>
+      <h2>Cada aula termina em resultado concreto</h2>
+      <p>O método parte de situações reais da prática forense — e você repete cada exercício no seu próprio caso.</p>
     </div>
     <div class="steps">
-      <div class="step">
+      <div class="step reveal">
         <h3>Segurança primeiro</h3>
         <p>Configuração segura das ferramentas, sigilo profissional e cuidados com LGPD antes de qualquer prompt.</p>
       </div>
-      <div class="step">
+      <div class="step reveal">
         <h3>Casos reais</h3>
         <p>Petições, contratos, pareceres e análises de autos construídos ao vivo, com o raciocínio explicado passo a passo.</p>
       </div>
-      <div class="step">
+      <div class="step reveal">
         <h3>Prática guiada</h3>
         <p>Você reproduz cada exercício no seu próprio contexto, com templates e prompts prontos para adaptar.</p>
       </div>
-      <div class="step">
+      <div class="step reveal">
         <h3>Rotina transformada</h3>
         <p>Ao final, a IA está integrada ao seu fluxo de trabalho — não como novidade, mas como ferramenta diária.</p>
       </div>
@@ -327,28 +519,28 @@
 <!-- ==================== PROFESSOR ==================== -->
 <section id="professor">
   <div class="wrap">
-    <div class="section-head">
-      <span class="tag">Professor</span>
-      <h2>Quem ensina</h2>
-      <p>Vivência real na advocacia e aplicação diária de IA generativa na prática jurídica.</p>
-    </div>
     <div class="prof">
-      <!-- EDITAR: substituir pelo caminho da foto, ex.: <img src="foto-vilmar.jpg" alt="Vilmar Junior"> -->
-      <div class="prof-photo">Foto do professor<br>(substituir por imagem)</div>
-      <div class="prof-info">
+      <!-- EDITAR: substituir pelo caminho da foto, ex.: <img src="foto-vilmar.jpg" alt="Vilmar Junior" style="border-radius:22px"> -->
+      <div class="prof-photo reveal">
+        <span class="ph-icon">👤</span>
+        Foto do professor<br>(substituir por imagem)
+      </div>
+      <div class="prof-info reveal">
+        <span class="eyebrow">Professor</span>
         <h3>Vilmar Junior</h3>
-        <p class="role">Advogado · OAB [nº — editar] · Especialista em IA aplicada à prática jurídica</p>
+        <p class="role">Advogado · OAB [nº — editar] · IA aplicada à prática jurídica</p>
         <!-- EDITAR: ajustar a biografia com formação, especializações e trajetória reais -->
         <p>Advogado atuante, com uso diário de Inteligência Artificial generativa na rotina do escritório: elaboração de peças, análise de processos, pareceres e atendimento a clientes.</p>
         <p>Desenvolveu metodologia própria para levar IA à prática forense com segurança e sigilo profissional, transformando a tecnologia em produtividade concreta — sem substituir o juízo crítico do advogado.</p>
         <p>Nos cursos, compartilha exatamente o fluxo de trabalho que aplica nos próprios casos, com exemplos reais e resultados verificáveis.</p>
       </div>
     </div>
-    <!-- EDITAR: preencher com números reais (alunos, anos de advocacia, aulas etc.) -->
+    <!-- EDITAR: preencher com números reais (alunos, anos de advocacia, horas de conteúdo) -->
     <div class="stats">
-      <div class="stat"><b>[X]+</b><span>Alunos formados</span></div>
-      <div class="stat"><b>[X]+</b><span>Anos de advocacia</span></div>
-      <div class="stat"><b>[X]+</b><span>Horas de conteúdo</span></div>
+      <div class="stat reveal"><b>[X]+</b><span>Alunos formados</span></div>
+      <div class="stat reveal"><b>[X]+</b><span>Anos de advocacia</span></div>
+      <div class="stat reveal"><b>[X]+</b><span>Horas de conteúdo</span></div>
+      <div class="stat reveal"><b>100%</b><span>Online e prático</span></div>
     </div>
   </div>
 </section>
@@ -356,11 +548,11 @@
 <!-- ==================== FAQ ==================== -->
 <section id="faq">
   <div class="wrap">
-    <div class="section-head">
-      <span class="tag">Dúvidas frequentes</span>
+    <div class="section-head center reveal">
+      <span class="eyebrow">Dúvidas frequentes</span>
       <h2>Perguntas que recebemos com frequência</h2>
     </div>
-    <div class="faq">
+    <div class="faq reveal">
       <details open>
         <summary>Os cursos servem para quem nunca usou IA antes?</summary>
         <div class="answer">Sim. O Módulo 1 começa do absoluto zero: criação de conta segura, configurações de privacidade e fundamentos de prompts. Não é preciso nenhum conhecimento técnico prévio.</div>
@@ -390,14 +582,16 @@
 </section>
 
 <!-- ==================== CTA FINAL ==================== -->
-<section id="contato">
+<section id="contato" style="padding-top:0">
   <div class="wrap">
-    <div class="cta-final">
-      <h2>Pronto para usar IA no seu dia a dia jurídico?</h2>
-      <p>Escolha o curso ideal para o seu momento e comece hoje. Conteúdo prático desde a primeira aula.</p>
-      <a class="btn btn-gold" href="#cursos">Ver todos os cursos</a>
-      <!-- EDITAR: trocar pelo link do WhatsApp, ex.: https://wa.me/55XXXXXXXXXXX -->
-      <a class="btn btn-ghost" href="mailto:vilmarjunior.advogado@gmail.com">Falar com a equipe</a>
+    <div class="cta-final reveal">
+      <h2>Pronto para usar IA no seu <em>dia a dia jurídico?</em></h2>
+      <p>Escolha o curso ideal para o seu momento e comece hoje. Conteúdo prático desde a primeira aula, acesso liberado em minutos.</p>
+      <div class="cta-actions">
+        <a class="btn btn-gold" href="#cursos">Ver todos os cursos</a>
+        <!-- EDITAR: trocar pelo link do WhatsApp, ex.: https://wa.me/55XXXXXXXXXXX -->
+        <a class="btn btn-outline" href="mailto:vilmarjunior.advogado@gmail.com">Falar com a equipe</a>
+      </div>
     </div>
   </div>
 </section>
@@ -407,7 +601,10 @@
   <div class="wrap">
     <div class="foot">
       <div>
-        <h4>Vilmar Junior · Direito &amp; IA</h4>
+        <a class="brand" href="#">
+          <span class="brand-mark">VJ</span>
+          <span class="brand-name">Vilmar Junior<small>Direito &amp; IA</small></span>
+        </a>
         <p>Educação especializada em Inteligência Artificial aplicada à área jurídica. Treinamentos práticos para advogados, departamentos jurídicos, estudantes e servidores, ministrados pelo advogado Vilmar Junior.</p>
       </div>
       <div>
@@ -415,6 +612,7 @@
         <ul>
           <li><a href="#para-quem">Para quem é</a></li>
           <li><a href="#cursos">Cursos</a></li>
+          <li><a href="#metodo">Método</a></li>
           <li><a href="#professor">Professor</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
@@ -432,5 +630,17 @@
   </div>
 </footer>
 
+<script>
+  // revela os blocos conforme entram na tela
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // fecha o menu mobile ao clicar em um link
+  document.querySelectorAll('#nav-links a').forEach(a=>{
+    a.addEventListener('click',()=>document.getElementById('nav-links').classList.remove('open'));
+  });
+</script>
 </body>
 </html>
