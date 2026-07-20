@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Estúdio — Conteúdo &amp; Vendas com IA</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+</head>
+<body>
+  <div class="layout">
+    <!-- ===================== SIDEBAR ===================== -->
+    <aside class="sidebar">
+      <div class="logo">🎬 <span>Meu Estúdio</span></div>
+      <nav>
+        <button class="nav-btn active" data-section="posicionamento">01 · Posicionamento</button>
+        <button class="nav-btn" data-section="conteudo">02 · Conteúdo</button>
+        <button class="nav-btn" data-section="funis">03 · Funis</button>
+        <button class="nav-btn" data-section="ativos">04 · Ativos</button>
+        <button class="nav-btn" data-section="vendas">05 · Vendas</button>
+        <button class="nav-btn" data-section="estudio">🎥 Estúdio</button>
+        <button class="nav-btn" data-section="config">⚙️ Configurações</button>
+      </nav>
+      <div class="sidebar-footer">
+        <span id="status-posicionamento" class="badge badge-off">Sem posicionamento</span>
+        <span id="status-api" class="badge badge-off">Sem chave de API</span>
+      </div>
+    </aside>
+
+    <!-- ===================== MAIN ===================== -->
+    <main class="main">
+
+      <!-- ========== POSICIONAMENTO ========== -->
+      <section id="posicionamento" class="section active">
+        <h1>Arquitetura de Posicionamento</h1>
+        <p class="lead">A base de tudo. Preencha os dados do seu negócio — a IA cria seu posicionamento completo, e ele alimenta todas as outras seções.</p>
+        <div class="card">
+          <div class="grid-2">
+            <label>Nome do negócio / profissional
+              <input id="pos-nome" type="text" placeholder="Ex.: Dr. Vilmar Junior — Advocacia">
+            </label>
+            <label>Nicho / área de atuação
+              <input id="pos-nicho" type="text" placeholder="Ex.: Advocacia previdenciária">
+            </label>
+            <label>Público-alvo
+              <input id="pos-publico" type="text" placeholder="Ex.: Trabalhadores próximos da aposentadoria">
+            </label>
+            <label>Principais serviços
+              <input id="pos-servicos" type="text" placeholder="Ex.: Aposentadoria, revisão de benefício, BPC/LOAS">
+            </label>
+            <label>Diferenciais
+              <input id="pos-diferenciais" type="text" placeholder="Ex.: Atendimento humanizado, 15 anos de experiência">
+            </label>
+            <label>Tom de voz desejado
+              <input id="pos-tom" type="text" placeholder="Ex.: Próximo e didático, sem juridiquês">
+            </label>
+          </div>
+          <button id="btn-gerar-posicionamento" class="btn-primary">✨ Gerar meu posicionamento</button>
+        </div>
+        <div id="out-posicionamento" class="output hidden"></div>
+      </section>
+
+      <!-- ========== CONTEÚDO ========== -->
+      <section id="conteudo" class="section">
+        <h1>Arquitetura de Conteúdo</h1>
+        <p class="lead">Carrosséis com arte pronta, roteiros de reels e stories — já no seu posicionamento.</p>
+
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="tab-carrossel">Carrossel</button>
+          <button class="tab-btn" data-tab="tab-reel">Roteiro de Reel</button>
+          <button class="tab-btn" data-tab="tab-stories">Stories</button>
+        </div>
+
+        <div id="tab-carrossel" class="tab-panel active">
+          <div class="card">
+            <label>Tema do carrossel
+              <input id="carrossel-tema" type="text" placeholder="Ex.: 5 erros que atrasam sua aposentadoria">
+            </label>
+            <button id="btn-gerar-carrossel" class="btn-primary">✨ Gerar carrossel com arte</button>
+          </div>
+          <div id="out-carrossel" class="output hidden"></div>
+          <div id="carrossel-preview" class="carrossel-preview"></div>
+          <div id="carrossel-acoes" class="hidden" style="margin-top:12px">
+            <button id="btn-baixar-slides" class="btn-secondary">⬇️ Baixar todas as artes (PNG)</button>
+          </div>
+        </div>
+
+        <div id="tab-reel" class="tab-panel">
+          <div class="card">
+            <label>Tema do reel
+              <input id="reel-tema" type="text" placeholder="Ex.: O que fazer quando o INSS nega seu benefício">
+            </label>
+            <label>Duração alvo
+              <select id="reel-duracao">
+                <option value="30">~30 segundos</option>
+                <option value="60" selected>~60 segundos</option>
+                <option value="90">~90 segundos</option>
+              </select>
+            </label>
+            <button id="btn-gerar-reel" class="btn-primary">✨ Gerar roteiro</button>
+          </div>
+          <div id="out-reel" class="output hidden"></div>
+          <button id="btn-abrir-estudio" class="btn-secondary hidden" style="margin-top:12px">🎥 Abrir no Estúdio (teleprompter)</button>
+        </div>
+
+        <div id="tab-stories" class="tab-panel">
+          <div class="card">
+            <label>Objetivo da sequência de stories
+              <input id="stories-tema" type="text" placeholder="Ex.: Gerar conversas no direct sobre revisão de benefício">
+            </label>
+            <button id="btn-gerar-stories" class="btn-primary">✨ Gerar sequência de stories</button>
+          </div>
+          <div id="out-stories" class="output hidden"></div>
+        </div>
+      </section>
+
+      <!-- ========== FUNIS ========== -->
+      <section id="funis" class="section">
+        <h1>Arquitetura de Funis</h1>
+        <p class="lead">A IA estuda seu posicionamento e monta o funil de venda ideal para o seu nicho.</p>
+        <div class="card">
+          <label>O que você quer vender / qual ação o cliente deve tomar?
+            <input id="funil-objetivo" type="text" placeholder="Ex.: Agendar consulta para análise de aposentadoria">
+          </label>
+          <button id="btn-gerar-funil" class="btn-primary">✨ Gerar funil de vendas</button>
+        </div>
+        <div id="out-funil" class="output hidden"></div>
+      </section>
+
+      <!-- ========== ATIVOS ========== -->
+      <section id="ativos" class="section">
+        <h1>Arquitetura de Ativos</h1>
+        <p class="lead">Roteiros de páginas e vídeos que vendem por você: VSL, página de captura, aula.</p>
+        <div class="card">
+          <label>Tipo de ativo
+            <select id="ativo-tipo">
+              <option value="vsl">Roteiro de VSL (vídeo de vendas)</option>
+              <option value="pagina">Copy de página de vendas / captura</option>
+              <option value="aula">Roteiro de aula / masterclass</option>
+              <option value="webinar">Roteiro de webinar ao vivo</option>
+            </select>
+          </label>
+          <label>Sobre qual oferta/serviço?
+            <input id="ativo-oferta" type="text" placeholder="Ex.: Consultoria de planejamento de aposentadoria">
+          </label>
+          <button id="btn-gerar-ativo" class="btn-primary">✨ Gerar ativo</button>
+        </div>
+        <div id="out-ativo" class="output hidden"></div>
+      </section>
+
+      <!-- ========== VENDAS ========== -->
+      <section id="vendas" class="section">
+        <h1>Arquitetura de Vendas</h1>
+        <p class="lead">Scripts para cada etapa da venda e um copiloto em tempo real para negociações.</p>
+
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="tab-scripts">Scripts de venda</button>
+          <button class="tab-btn" data-tab="tab-copiloto">Copiloto em tempo real</button>
+        </div>
+
+        <div id="tab-scripts" class="tab-panel active">
+          <div class="card">
+            <label>Etapa da venda
+              <select id="script-etapa">
+                <option value="prospeccao">Prospecção / primeiro contato</option>
+                <option value="qualificacao">Qualificação</option>
+                <option value="reuniao">Reunião / consulta</option>
+                <option value="fechamento">Fechamento</option>
+                <option value="objecoes">Quebra de objeções</option>
+                <option value="followup">Follow-up (retomar conversa)</option>
+              </select>
+            </label>
+            <button id="btn-gerar-script" class="btn-primary">✨ Gerar script</button>
+          </div>
+          <div id="out-script" class="output hidden"></div>
+        </div>
+
+        <div id="tab-copiloto" class="tab-panel">
+          <p class="hint">Cole a situação real (mensagem do cliente, objeção, dúvida) e receba a resposta pronta. A conversa mantém o contexto.</p>
+          <div id="copiloto-chat" class="chat"></div>
+          <div class="chat-input">
+            <textarea id="copiloto-input" rows="3" placeholder="Ex.: O cliente disse que vai pensar e falar com a esposa. O que respondo?"></textarea>
+            <button id="btn-copiloto-enviar" class="btn-primary">Enviar</button>
+          </div>
+          <button id="btn-copiloto-limpar" class="btn-ghost">Limpar conversa</button>
+        </div>
+      </section>
+
+      <!-- ========== ESTÚDIO ========== -->
+      <section id="estudio" class="section">
+        <h1>🎥 Estúdio</h1>
+        <p class="lead">Grave seus reels aqui mesmo, com teleprompter. Sem OBS, sem CapCut, sem instalar nada.</p>
+
+        <div class="estudio-grid">
+          <div class="estudio-video-wrap">
+            <video id="estudio-video" autoplay muted playsinline></video>
+            <div id="teleprompter" class="teleprompter hidden">
+              <div id="teleprompter-texto"></div>
+            </div>
+            <div id="rec-indicator" class="rec-indicator hidden">● REC <span id="rec-timer">00:00</span></div>
+          </div>
+
+          <div class="estudio-controls card">
+            <label>Roteiro do teleprompter
+              <textarea id="estudio-roteiro" rows="6" placeholder="Cole aqui o roteiro, ou gere um em Conteúdo → Roteiro de Reel"></textarea>
+            </label>
+            <div class="grid-2">
+              <label>Velocidade <input id="tp-velocidade" type="range" min="10" max="120" value="40"></label>
+              <label>Tamanho da letra <input id="tp-fonte" type="range" min="18" max="60" value="32"></label>
+            </div>
+            <label class="checkline"><input id="tp-espelho" type="checkbox"> Espelhar minha imagem</label>
+            <div class="btn-row">
+              <button id="btn-camera" class="btn-secondary">📷 Ligar câmera</button>
+              <button id="btn-teleprompter" class="btn-secondary" disabled>▶️ Rolar texto</button>
+              <button id="btn-gravar" class="btn-primary" disabled>⏺ Gravar</button>
+            </div>
+            <div id="gravacoes" class="gravacoes"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== CONFIG ========== -->
+      <section id="config" class="section">
+        <h1>⚙️ Configurações</h1>
+        <div class="card">
+          <h2>Chave da API Anthropic (Claude)</h2>
+          <p class="hint">Crie sua chave em <a href="https://platform.claude.com" target="_blank" rel="noopener">platform.claude.com</a>. Você paga só pelo que usar — para uso individual, normalmente muito menos que uma assinatura mensal. A chave fica salva apenas no seu navegador.</p>
+          <label>Chave de API
+            <input id="cfg-api-key" type="password" placeholder="sk-ant-...">
+          </label>
+          <label>Modelo
+            <select id="cfg-model">
+              <option value="claude-opus-4-8">Claude Opus 4.8 — máxima qualidade (US$ 5/25 por milhão de tokens)</option>
+              <option value="claude-sonnet-5">Claude Sonnet 5 — equilíbrio qualidade/custo (US$ 3/15)</option>
+              <option value="claude-haiku-4-5">Claude Haiku 4.5 — mais barato e rápido (US$ 1/5)</option>
+            </select>
+          </label>
+          <h2>Identidade visual (artes dos carrosséis)</h2>
+          <div class="grid-2">
+            <label>Cor de fundo <input id="cfg-cor-fundo" type="color" value="#14213d"></label>
+            <label>Cor do texto <input id="cfg-cor-texto" type="color" value="#ffffff"></label>
+            <label>Cor de destaque <input id="cfg-cor-destaque" type="color" value="#fca311"></label>
+            <label>@ do Instagram <input id="cfg-instagram" type="text" placeholder="@seuperfil"></label>
+          </div>
+          <button id="btn-salvar-config" class="btn-primary">Salvar configurações</button>
+          <span id="cfg-salvo" class="hint hidden">✅ Salvo!</span>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- canvas oculto usado para gerar as artes dos slides -->
+  <canvas id="slide-canvas" width="1080" height="1350" class="hidden"></canvas>
+
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/estudio.js"></script>
+</body>
+</html>
