@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juristec — Painel (demonstração)</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2322c993'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='%23042418' font-family='Arial' font-weight='bold'>J</text></svg>" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <link rel="stylesheet" href="../assets/css/app.css" />
+</head>
+<body class="app">
+  <div class="app-shell">
+
+    <!-- Sidebar -->
+    <aside class="side">
+      <a href="../index.html" class="brand"><span class="brand__mark">J</span> Juris<span class="brand__dot">tec</span></a>
+      <nav class="side__nav" id="sideNav">
+        <div class="side__link active" data-view="painel"><span class="ic">📊</span> Painel</div>
+        <div class="side__link" data-view="processos"><span class="ic">📁</span> Processos</div>
+        <div class="side__link" data-view="prazos"><span class="ic">⏰</span> Prazos <span class="side__badge" id="prazoBadge">0</span></div>
+        <div class="side__link" data-view="atendimento"><span class="ic">💬</span> Atendimento</div>
+        <div class="side__link" data-view="financeiro"><span class="ic">💰</span> Financeiro</div>
+      </nav>
+      <div class="side__foot">
+        <div class="side__user">
+          <div class="side__avatar">V</div>
+          <div><b style="font-size:.9rem">Dr. Vilmar Junior</b><small>OAB/SP 000.000</small></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+
+      <!-- ===== PAINEL ===== -->
+      <section class="view active" id="view-painel">
+        <div class="topbar">
+          <div><h1>Bom dia, Dr. Vilmar 👋</h1><p>Veja o resumo do seu escritório hoje.</p></div>
+          <button class="btn btn--accent" data-goto="processos">+ Adicionar processo por OAB</button>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><div class="stat__lbl">Processos ativos</div><div class="stat__val" id="stProc">0</div></div>
+          <div class="stat"><div class="stat__lbl">Prazos urgentes</div><div class="stat__val danger" id="stUrg">0</div></div>
+          <div class="stat"><div class="stat__lbl">Intimações novas</div><div class="stat__val warn" id="stInt">0</div></div>
+          <div class="stat"><div class="stat__lbl">A receber (mês)</div><div class="stat__val ok" id="stRec">R$ 0</div></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel__head"><h2>Prazos mais próximos</h2><span class="btn btn--ghost" data-goto="prazos" style="padding:6px 14px;font-size:.85rem;">Ver todos</span></div>
+          <div class="panel__body" id="painelPrazos"></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel__head"><h2>Últimas intimações com resumo por IA</h2></div>
+          <div class="panel__body" id="painelIntimacoes"></div>
+        </div>
+      </section>
+
+      <!-- ===== PROCESSOS ===== -->
+      <section class="view" id="view-processos">
+        <div class="topbar"><div><h1>Processos</h1><p>Monitorados automaticamente pela sua OAB.</p></div></div>
+
+        <div class="panel">
+          <div class="panel__head"><h2>Importar por número da OAB</h2></div>
+          <div class="panel__body" style="padding:20px;">
+            <div class="row" style="align-items:flex-end;">
+              <div class="field" style="flex:1;min-width:180px;margin:0;">
+                <label>Número da OAB</label>
+                <input class="input" id="oabInput" placeholder="Ex.: SP 123456" />
+              </div>
+              <button class="btn btn--accent" id="oabBtn">Buscar processos</button>
+            </div>
+            <p class="proc__meta" id="oabStatus" style="margin-top:10px;"></p>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel__head"><h2 id="procCount">Meus processos</h2></div>
+          <div class="panel__body" id="procList"></div>
+        </div>
+      </section>
+
+      <!-- ===== PRAZOS ===== -->
+      <section class="view" id="view-prazos">
+        <div class="topbar"><div><h1>Prazos</h1><p>Montados automaticamente a partir das suas intimações.</p></div></div>
+        <div class="panel"><div class="panel__body" id="prazoList"></div></div>
+      </section>
+
+      <!-- ===== ATENDIMENTO / WHATSAPP ===== -->
+      <section class="view" id="view-atendimento">
+        <div class="topbar"><div><h1>Atendimento no WhatsApp</h1><p>Simulação de como seu cliente conversa com o assistente.</p></div></div>
+        <div class="chat-wrap">
+          <div class="chat">
+            <div class="chat__head">
+              <span class="wa">✆</span>
+              <div><b>Juristec Assistente</b><small style="color:#8fdcc0;">responde sobre os processos do cliente</small></div>
+            </div>
+            <div class="chat__body" id="chatBody">
+              <div class="bubble bubble--in">Olá! Sou o assistente do escritório. Pergunte sobre seu processo 🙂</div>
+            </div>
+            <div class="chat__suggest" id="chatSuggest">
+              <span class="chip" data-q="Tem novidade no meu processo?">Tem novidade?</span>
+              <span class="chip" data-q="Qual o próximo prazo?">Qual o próximo prazo?</span>
+              <span class="chip" data-q="Quando recebo meu dinheiro?">E o pagamento?</span>
+              <span class="chip" data-q="Tenho audiência marcada?">Tenho audiência?</span>
+            </div>
+            <div class="chat__foot">
+              <input class="input" id="chatInput" placeholder="Escreva uma mensagem..." />
+              <button class="btn btn--accent" id="chatSend">Enviar</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== FINANCEIRO ===== -->
+      <section class="view" id="view-financeiro">
+        <div class="topbar"><div><h1>Financeiro</h1><p>Honorários, custas e recebimentos por processo.</p></div></div>
+        <div class="stats" style="grid-template-columns:repeat(3,1fr);">
+          <div class="stat"><div class="stat__lbl">A receber</div><div class="stat__val ok" id="finIn">R$ 0</div></div>
+          <div class="stat"><div class="stat__lbl">A pagar (custas)</div><div class="stat__val danger" id="finOut">R$ 0</div></div>
+          <div class="stat"><div class="stat__lbl">Saldo previsto</div><div class="stat__val" id="finBal">R$ 0</div></div>
+        </div>
+        <div class="panel">
+          <div class="panel__head"><h2>Lançamentos</h2></div>
+          <div class="panel__body" style="padding:0;overflow-x:auto;">
+            <table class="table"><thead><tr><th>Data</th><th>Processo</th><th>Descrição</th><th>Tipo</th><th style="text-align:right;">Valor</th></tr></thead>
+              <tbody id="finTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Drawer de detalhe do processo -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="drawer" id="drawer">
+    <button class="drawer__close" id="drawerClose">×</button>
+    <div id="drawerContent"></div>
+  </aside>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

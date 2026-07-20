@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juristec — Software jurídico que monitora processos, prazos e clientes no WhatsApp</title>
+  <meta name="description" content="O Juristec monitora processos e publicações, controla prazos, automatiza documentos e responde seus clientes no WhatsApp — para você advogar em vez de administrar." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2322c993'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='%23042418' font-family='Arial' font-weight='bold'>J</text></svg>" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="header">
+    <div class="container">
+      <nav class="nav" id="nav">
+        <a href="#" class="brand">
+          <span class="brand__mark">J</span> Juris<span class="brand__dot">tec</span>
+        </a>
+        <div class="nav__links">
+          <a href="#recursos">Recursos</a>
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#ia">IA &amp; WhatsApp</a>
+          <a href="#planos">Planos</a>
+          <a href="#seguranca">Segurança</a>
+        </div>
+        <div class="nav__actions">
+          <a href="app/index.html" class="btn btn--ghost">Entrar</a>
+          <a href="app/index.html" class="btn btn--accent">Testar demo grátis</a>
+        </div>
+        <button class="nav__toggle" id="navToggle" aria-label="Menu">☰</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="container hero__grid">
+      <div>
+        <span class="eyebrow">Software jurídico com inteligência artificial</span>
+        <h1>Pare de <span class="grad">administrar</span>. Volte a advogar.</h1>
+        <p class="lead">
+          O Juristec monitora seus processos e publicações, monta seus prazos automaticamente,
+          gera resumos por IA e responde seus clientes no WhatsApp. Tudo a partir do seu número da OAB.
+        </p>
+        <div class="hero__cta">
+          <a href="app/index.html" class="btn btn--accent btn--lg">Testar demo grátis</a>
+          <a href="#como-funciona" class="btn btn--ghost btn--lg">Ver como funciona</a>
+        </div>
+        <div class="hero__badges">
+          <div class="hero__badge"><span>✔</span> Sem fidelidade</div>
+          <div class="hero__badge"><span>✔</span> Migração gratuita</div>
+          <div class="hero__badge"><span>✔</span> Conforme a LGPD</div>
+        </div>
+      </div>
+
+      <div class="mock reveal">
+        <div class="mock__bar"><i></i><i></i><i></i><span>app.juristec.com.br — Painel</span></div>
+        <div class="mock__body">
+          <div class="mock__row">
+            <div><h4>0801234-56.2025.8.26.0100</h4><small>Nova intimação • TJSP</small></div>
+            <span class="tag tag--danger">Prazo em 3 dias</span>
+          </div>
+          <div class="mock__row">
+            <div><h4>1005678-90.2024.5.02.0011</h4><small>Publicação no diário • TRT-2</small></div>
+            <span class="tag tag--warn">Prazo em 8 dias</span>
+          </div>
+          <div class="mock__row">
+            <div><h4>0009988-77.2025.8.26.0002</h4><small>Sentença publicada</small></div>
+            <span class="tag tag--ok">Sem prazo</span>
+          </div>
+          <div class="mock__ai">
+            <b>Resumo por IA</b>
+            <p>Intimação para apresentar contrarrazões ao recurso de apelação no prazo de 15 dias. Réu representado pela parte contrária. Sugestão: revisar peça e agendar minuta.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRUST STRIP ============ -->
+  <section class="trust section--tight">
+    <div class="container trust__grid">
+      <div><div class="trust__num">100<span>%</span></div><div class="trust__lbl">dos diários oficiais monitorados</div></div>
+      <div><div class="trust__num">24<span>/7</span></div><div class="trust__lbl">atendimento ao cliente no WhatsApp</div></div>
+      <div><div class="trust__num">-70<span>%</span></div><div class="trust__lbl">de tempo em tarefas administrativas</div></div>
+      <div><div class="trust__num">0<span></span></div><div class="trust__lbl">prazo perdido por esquecimento</div></div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+  <section class="section" id="recursos">
+    <div class="container">
+      <span class="eyebrow">Recursos</span>
+      <h2 class="section-title">Tudo que seu escritório precisa em um só lugar</h2>
+      <p class="section-lead">Da captação do processo ao atendimento do cliente, o Juristec automatiza a rotina para você focar no que importa: a tese.</p>
+
+      <div class="features__grid">
+        <div class="card reveal">
+          <div class="card__icon">🔎</div>
+          <h3>Monitoramento por OAB</h3>
+          <p>Informe seu número da OAB e o sistema busca e cadastra automaticamente seus processos e as partes envolvidas.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card__icon">📰</div>
+          <h3>Intimações e publicações</h3>
+          <p>Acompanhamos intimações e publicações nos diários oficiais e avisamos você assim que algo novo acontece.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card__icon">🤖</div>
+          <h3>Resumos com IA</h3>
+          <p>A inteligência artificial lê o andamento e entrega um resumo claro do que aconteceu em cada processo.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card__icon">⏰</div>
+          <h3>Controle de prazos</h3>
+          <p>Prazos montados automaticamente a partir das intimações, com alertas antes do vencimento.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card__icon">💬</div>
+          <h3>Atendimento no WhatsApp</h3>
+          <p>Seus clientes perguntam sobre o processo e recebem respostas claras, sem termos técnicos, na hora.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card__icon">💰</div>
+          <h3>Gestão financeira</h3>
+          <p>Honorários, custas e recebimentos organizados por processo e cliente, com visão do fluxo de caixa.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card__icon">📄</div>
+          <h3>Automação de documentos</h3>
+          <p>Modelos inteligentes preenchidos com os dados do processo para gerar peças e contratos em minutos.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card__icon">📊</div>
+          <h3>Análise de dados</h3>
+          <p>Indicadores de produtividade, prazos e resultados para decisões estratégicas do escritório.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card__icon">🔗</div>
+          <h3>Servidor MCP para IA</h3>
+          <p>Conecte Claude, ChatGPT e Gemini aos seus processos e execute tarefas em linguagem natural.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="section" id="como-funciona" style="background: rgba(255,255,255,.015); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="container">
+      <span class="eyebrow">Como funciona</span>
+      <h2 class="section-title">Do cadastro ao cliente informado em 4 passos</h2>
+
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step__n"></div>
+          <h3>Cadastre sua OAB</h3>
+          <p>Em segundos importamos todos os seus processos e as partes envolvidas.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step__n"></div>
+          <h3>Monitoramos por você</h3>
+          <p>Acompanhamos diários oficiais e sistemas judiciais 24 horas por dia.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step__n"></div>
+          <h3>IA resume e cria prazos</h3>
+          <p>Cada intimação vira um resumo claro e um prazo com alerta automático.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step__n"></div>
+          <h3>Cliente atendido no zap</h3>
+          <p>Seu cliente recebe atualizações e tira dúvidas direto no WhatsApp.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ IA + WHATSAPP ============ -->
+  <section class="section mcp" id="ia">
+    <div class="container mcp__grid">
+      <div>
+        <span class="eyebrow">Inteligência artificial</span>
+        <h2 class="section-title">Seu cliente informado. Sua IA trabalhando por você.</h2>
+        <p class="section-lead">
+          Quando o cliente pergunta sobre o processo, o Juristec responde no WhatsApp em linguagem simples.
+          E com o servidor MCP, seus assistentes de IA acessam processos, prazos e documentos — e executam tarefas.
+        </p>
+        <ul>
+          <li><b>Respostas sem juridiquês</b> — o cliente entende o andamento sem precisar te ligar.</li>
+          <li><b>Disponível 24/7</b> — atualizações a qualquer hora, sem sobrecarregar sua equipe.</li>
+          <li><b>Conexão com Claude, ChatGPT e Gemini</b> — via servidor MCP, em linguagem natural.</li>
+          <li><b>Ações automáticas</b> — consulte prazos, gere minutas e organize documentos por comando.</li>
+        </ul>
+      </div>
+
+      <div class="chatbox reveal">
+        <div class="chatbox__head">
+          <span class="wa">✆</span>
+          <div><b>Juristec Assistente</b><small>online agora</small></div>
+        </div>
+        <div class="chatbox__body">
+          <div class="bubble bubble--in">Oi! Tem novidade no meu processo?</div>
+          <div class="bubble bubble--out">Olá, Sr. Antônio! Sim 🙂 Saiu uma decisão hoje. O juiz marcou audiência de conciliação para <b>12/08</b>. Você não precisa fazer nada agora — o Dr. Vilmar cuidará da preparação.</div>
+          <div class="bubble bubble--in">E o dinheiro que eu tinha que receber?</div>
+          <div class="bubble bubble--out">O pagamento ainda depende do fim dessa fase. Assim que houver definição, aviso você por aqui na mesma hora. 👍</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRICING ============ -->
+  <section class="section" id="planos">
+    <div class="container">
+      <span class="eyebrow">Planos</span>
+      <h2 class="section-title">Escolha o plano do seu momento</h2>
+      <p class="section-lead">Migração gratuita a partir do plano Essencial. Sem fidelidade — ao fim do período, você decide se renova.</p>
+
+      <div class="plans">
+        <div class="plan reveal">
+          <h3>Jovem Advogado</h3>
+          <p class="plan__desc">Para quem está começando e quer organizar os primeiros processos.</p>
+          <div class="plan__price">R$ 49<small>/mês</small></div>
+          <div class="plan__cycle">cobrança mensal</div>
+          <ul>
+            <li>Até 30 processos monitorados</li>
+            <li>Controle de prazos</li>
+            <li>Resumos por IA</li>
+            <li class="off">Atendimento no WhatsApp</li>
+            <li class="off">Servidor MCP</li>
+          </ul>
+          <a href="app/index.html" class="btn btn--ghost btn--block">Começar</a>
+        </div>
+
+        <div class="plan plan--featured reveal">
+          <span class="plan__flag">Mais popular</span>
+          <h3>Essencial</h3>
+          <p class="plan__desc">O essencial para o escritório rodar no automático.</p>
+          <div class="plan__price">R$ 129<small>/mês</small></div>
+          <div class="plan__cycle">migração gratuita incluída</div>
+          <ul>
+            <li>Até 200 processos monitorados</li>
+            <li>Controle de prazos + alertas</li>
+            <li>Resumos por IA</li>
+            <li>Atendimento no WhatsApp</li>
+            <li>Gestão financeira</li>
+          </ul>
+          <a href="app/index.html" class="btn btn--accent btn--block">Assinar Essencial</a>
+        </div>
+
+        <div class="plan reveal">
+          <h3>Proficiente</h3>
+          <p class="plan__desc">Para advogados com alto volume e automação de documentos.</p>
+          <div class="plan__price">R$ 249<small>/mês</small></div>
+          <div class="plan__cycle">migração gratuita incluída</div>
+          <ul>
+            <li>Processos ilimitados</li>
+            <li>Tudo do Essencial</li>
+            <li>Automação de documentos</li>
+            <li>Servidor MCP para IA</li>
+            <li>Análise de dados</li>
+          </ul>
+          <a href="app/index.html" class="btn btn--ghost btn--block">Assinar Proficiente</a>
+        </div>
+
+        <div class="plan reveal">
+          <h3>Sociedade Jurídica</h3>
+          <p class="plan__desc">Para bancas e escritórios com várias OABs e equipes.</p>
+          <div class="plan__price">Sob<small> consulta</small></div>
+          <div class="plan__cycle">multiusuário</div>
+          <ul>
+            <li>Múltiplas OABs</li>
+            <li>Usuários e permissões</li>
+            <li>Tudo do Proficiente</li>
+            <li>Onboarding dedicado</li>
+            <li>Suporte prioritário</li>
+          </ul>
+          <a href="#contato" class="btn btn--ghost btn--block">Falar com vendas</a>
+        </div>
+      </div>
+
+      <p class="pay-note">Pagamento por <b>cartão de crédito</b>, <b>boleto</b> ou <b>PIX</b>. Sem fidelidade e com cancelamento a qualquer momento.</p>
+    </div>
+  </section>
+
+  <!-- ============ SECURITY ============ -->
+  <section class="section" id="seguranca" style="background: rgba(255,255,255,.015); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="container">
+      <span class="eyebrow">Segurança</span>
+      <h2 class="section-title">Seus dados protegidos e em conformidade</h2>
+      <p class="section-lead">O Juristec segue a LGPD e respeita as normas da OAB em cada conexão com os sistemas judiciais.</p>
+
+      <div class="security__grid">
+        <div class="sec reveal"><div class="sec__icon">🔐</div><h3>Criptografia</h3><p>Seus dados são armazenados com criptografia em infraestrutura de nuvem segura.</p></div>
+        <div class="sec reveal"><div class="sec__icon">📜</div><h3>Conforme a LGPD</h3><p>Tratamento de dados pessoais de acordo com a Lei Geral de Proteção de Dados.</p></div>
+        <div class="sec reveal"><div class="sec__icon">💾</div><h3>Backups automáticos</h3><p>Cópias de segurança contínuas para que você nunca perca informações.</p></div>
+        <div class="sec reveal"><div class="sec__icon">⚖️</div><h3>Normas da OAB</h3><p>Conexões com sistemas judiciais feitas por vínculos protegidos e regulares.</p></div>
+        <div class="sec reveal"><div class="sec__icon">👤</div><h3>Controle de acesso</h3><p>Perfis, permissões e trilhas de auditoria para cada usuário do escritório.</p></div>
+        <div class="sec reveal"><div class="sec__icon">☁️</div><h3>Alta disponibilidade</h3><p>Infraestrutura monitorada 24/7 para manter tudo sempre acessível.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow center" style="display:block; text-align:center;">Dúvidas frequentes</span>
+      <h2 class="section-title center">Perguntas comuns</h2>
+
+      <div class="faq" id="faq">
+        <div class="faq__item">
+          <button class="faq__q">Como o sistema encontra meus processos? <span class="plus">+</span></button>
+          <div class="faq__a"><p>Você informa apenas o número da sua OAB. A partir dele, buscamos e cadastramos automaticamente seus processos e as partes envolvidas, e passamos a monitorar os diários oficiais.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q">Preciso ficar acompanhando os diários? <span class="plus">+</span></button>
+          <div class="faq__a"><p>Não. O Juristec monitora intimações e publicações por você 24/7 e avisa assim que houver novidade, já com um resumo por IA e o prazo calculado.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q">Como funciona o atendimento no WhatsApp? <span class="plus">+</span></button>
+          <div class="faq__a"><p>Seus clientes perguntam sobre o processo e recebem respostas claras, sem termos técnicos, a qualquer hora — reduzindo ligações e mensagens diretas para você.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q">Tem fidelidade? Como faço para migrar? <span class="plus">+</span></button>
+          <div class="faq__a"><p>Não há fidelidade — ao fim do período contratado, você decide se renova. A migração é gratuita a partir do plano Essencial.</p></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q">Meus dados estão seguros? <span class="plus">+</span></button>
+          <div class="faq__a"><p>Sim. Seguimos a LGPD, armazenamos os dados com criptografia em nuvem segura, com backups automáticos, e respeitamos as normas da OAB.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="section" id="contato">
+    <div class="container">
+      <div class="cta-final reveal">
+        <h2>Comece hoje a advogar em vez de administrar</h2>
+        <p>Teste a demonstração e veja seus processos, prazos e atendimento em um só painel.</p>
+        <a href="app/index.html" class="btn btn--accent btn--lg">Testar demo grátis</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="#" class="brand" style="margin-bottom:14px;"><span class="brand__mark">J</span> Juris<span class="brand__dot">tec</span></a>
+          <p>Software jurídico com IA que monitora processos, controla prazos e atende seus clientes no WhatsApp.</p>
+        </div>
+        <div>
+          <h4>Produto</h4>
+          <a href="#recursos">Recursos</a>
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#planos">Planos</a>
+          <a href="app/index.html">Demonstração</a>
+        </div>
+        <div>
+          <h4>Empresa</h4>
+          <a href="#">Blog</a>
+          <a href="#seguranca">Segurança</a>
+          <a href="#contato">Contato</a>
+          <a href="#">Sobre</a>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <a href="#">Termos de uso</a>
+          <a href="#">Política de privacidade</a>
+          <a href="#">Políticas de pagamento</a>
+          <a href="#">LGPD</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 Juristec. Todos os direitos reservados.</span>
+        <span>Projeto demonstrativo — feito com HTML, CSS e JS puro.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
