@@ -11,7 +11,7 @@ function getConfig() {
     model: localStorage.getItem("cfg_model") || "claude-opus-4-8",
     corFundo: localStorage.getItem("cfg_cor_fundo") || "#14213d",
     corTexto: localStorage.getItem("cfg_cor_texto") || "#ffffff",
-    corDestaque: localStorage.getItem("cfg_cor_destaque") || "#fca311",
+    corDestaque: localStorage.getItem("cfg_cor_destaque") || "#c9a227",
     instagram: localStorage.getItem("cfg_instagram") || "",
   };
 }

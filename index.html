@@ -76,13 +76,53 @@
             <label>Tema do carrossel
               <input id="carrossel-tema" type="text" placeholder="Ex.: 5 erros que atrasam sua aposentadoria">
             </label>
-            <button id="btn-gerar-carrossel" class="btn-primary">✨ Gerar carrossel com arte</button>
+            <div class="btn-row">
+              <button id="btn-gerar-carrossel" class="btn-primary">✨ Gerar com IA e abrir o editor</button>
+              <button id="btn-carrossel-branco" class="btn-secondary">+ Começar em branco</button>
+            </div>
           </div>
+
+          <!-- editor visual estilo Canva -->
+          <div id="editor-carrossel" class="editor hidden">
+            <div class="editor-side">
+              <h3>Modelos VGJ</h3>
+              <div id="template-list" class="template-list"></div>
+              <h3>Formato</h3>
+              <label>Proporção da arte
+                <select id="edit-formato">
+                  <option value="4x5" selected>Feed 4:5 (1080×1350)</option>
+                  <option value="1x1">Quadrado 1:1 (1080×1080)</option>
+                  <option value="9x16">Stories 9:16 (1080×1920)</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="editor-stage">
+              <div class="stage-canvas-wrap">
+                <canvas id="edit-canvas" width="1080" height="1350"></canvas>
+              </div>
+              <div class="editor-fields">
+                <div class="slide-tag" id="edit-slide-tag">Slide 1</div>
+                <label>Título do slide
+                  <textarea id="edit-titulo" rows="2" placeholder="Título impactante"></textarea>
+                </label>
+                <label>Texto de apoio
+                  <textarea id="edit-texto" rows="4" placeholder="Texto de apoio (opcional)"></textarea>
+                </label>
+                <label class="checkline"><input id="edit-badge" type="checkbox"> Mostrar selo "ARRASTE →" (ideal na capa)</label>
+              </div>
+            </div>
+          </div>
+
+          <div id="slides-strip" class="slides-strip hidden"></div>
+
+          <div id="carrossel-acoes" class="btn-row hidden">
+            <button id="btn-add-slide" class="btn-secondary">+ Slide</button>
+            <button id="btn-baixar-slide" class="btn-secondary">⬇️ Baixar este slide</button>
+            <button id="btn-baixar-slides" class="btn-primary">⬇️ Baixar todos (PNG)</button>
+          </div>
+
           <div id="out-carrossel" class="output hidden"></div>
-          <div id="carrossel-preview" class="carrossel-preview"></div>
-          <div id="carrossel-acoes" class="hidden" style="margin-top:12px">
-            <button id="btn-baixar-slides" class="btn-secondary">⬇️ Baixar todas as artes (PNG)</button>
-          </div>
         </div>
 
         <div id="tab-reel" class="tab-panel">
@@ -198,17 +238,27 @@
               <div id="teleprompter-texto"></div>
             </div>
             <div id="rec-indicator" class="rec-indicator hidden">● REC <span id="rec-timer">00:00</span></div>
+            <div id="countdown" class="countdown hidden"></div>
           </div>
 
           <div class="estudio-controls card">
+            <label>Formato do vídeo
+              <div class="formato-btns" id="reel-formato">
+                <button class="formato-btn active" data-aspect="9x16">Reels / Stories 9:16</button>
+                <button class="formato-btn" data-aspect="1x1">Feed 1:1</button>
+                <button class="formato-btn" data-aspect="4x5">Feed 4:5</button>
+              </div>
+            </label>
             <label>Roteiro do teleprompter
-              <textarea id="estudio-roteiro" rows="6" placeholder="Cole aqui o roteiro, ou gere um em Conteúdo → Roteiro de Reel"></textarea>
+              <textarea id="estudio-roteiro" rows="5" placeholder="Cole aqui o roteiro, ou gere um em Conteúdo → Roteiro de Reel"></textarea>
             </label>
             <div class="grid-2">
               <label>Velocidade <input id="tp-velocidade" type="range" min="10" max="120" value="40"></label>
               <label>Tamanho da letra <input id="tp-fonte" type="range" min="18" max="60" value="32"></label>
             </div>
             <label class="checkline"><input id="tp-espelho" type="checkbox"> Espelhar minha imagem</label>
+            <label class="checkline"><input id="tp-marca" type="checkbox" checked> Gravar com minha marca (@) no vídeo</label>
+            <p class="reel-watermark-hint">Contagem 3·2·1 antes de gravar e sua marca embutida no arquivo final — pronto para postar.</p>
             <div class="btn-row">
               <button id="btn-camera" class="btn-secondary">📷 Ligar câmera</button>
               <button id="btn-teleprompter" class="btn-secondary" disabled>▶️ Rolar texto</button>
@@ -217,6 +267,7 @@
             <div id="gravacoes" class="gravacoes"></div>
           </div>
         </div>
+        <canvas id="rec-canvas" class="hidden"></canvas>
       </section>
 
       <!-- ========== CONFIG ========== -->
@@ -239,7 +290,7 @@
           <div class="grid-2">
             <label>Cor de fundo <input id="cfg-cor-fundo" type="color" value="#14213d"></label>
             <label>Cor do texto <input id="cfg-cor-texto" type="color" value="#ffffff"></label>
-            <label>Cor de destaque <input id="cfg-cor-destaque" type="color" value="#fca311"></label>
+            <label>Cor de destaque <input id="cfg-cor-destaque" type="color" value="#c9a227"></label>
             <label>@ do Instagram <input id="cfg-instagram" type="text" placeholder="@seuperfil"></label>
           </div>
           <button id="btn-salvar-config" class="btn-primary">Salvar configurações</button>

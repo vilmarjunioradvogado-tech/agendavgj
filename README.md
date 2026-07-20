@@ -7,11 +7,11 @@ Sistema próprio de criação de conteúdo e vendas com IA — **do roteiro à g
 | Módulo | O que entrega |
 |---|---|
 | **01 · Posicionamento** | Documento completo: promessa, bio do Instagram, tom de voz, linha editorial, público-alvo — e ele alimenta todas as outras seções |
-| **02 · Conteúdo** | Carrosséis **com arte pronta para postar** (PNG 1080×1350 na sua identidade visual), roteiros de reels e sequências de stories |
+| **02 · Conteúdo** | **Editor de carrossel estilo Canva** — 5 modelos VGJ (Clássico, Editorial, Destaque, Minimal, Depoimento), edição de texto ao vivo, formatos 4:5 / 1:1 / 9:16, reordenar/adicionar slides e exportar PNG pronto para postar; além de roteiros de reels e stories |
 | **03 · Funis** | Funil de vendas completo sob medida para o seu nicho, etapa por etapa |
 | **04 · Ativos** | Roteiros de VSL, copy de páginas de venda/captura, aulas e webinars |
 | **05 · Vendas** | Scripts para cada etapa (prospecção → fechamento) + **copiloto em tempo real**: cole a situação e receba a resposta pronta |
-| **🎥 Estúdio** | Grave seus reels no navegador com **teleprompter integrado**, espelhamento, controle de velocidade e download do vídeo — sem OBS, sem CapCut |
+| **🎥 Estúdio** | Grave reels no navegador estilo CapCut: **teleprompter integrado**, escolha de formato (9:16 / 1:1 / 4:5), **contagem regressiva 3·2·1**, espelhamento e **sua marca (@) já embutida no vídeo final** — sem OBS, sem CapCut |
 
 ## Quanto custa
 

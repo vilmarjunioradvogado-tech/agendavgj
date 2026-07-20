@@ -155,149 +155,22 @@ document.getElementById("btn-gerar-posicionamento").addEventListener("click", as
 function v(id) { return document.getElementById(id).value.trim(); }
 
 /* ============================================================
- * 02 · CONTEÚDO — CARROSSEL (com arte via canvas)
+ * 02 · CONTEÚDO — EDITOR DE CARROSSEL (estilo Canva, VGJ)
  * ============================================================ */
-let slidesAtuais = [];
 
-const SCHEMA_CARROSSEL = {
-  type: "object",
-  properties: {
-    slides: {
-      type: "array",
-      items: {
-        type: "object",
-        properties: {
-          titulo: { type: "string", description: "Título curto e impactante do slide (máx 60 caracteres)" },
-          texto: { type: "string", description: "Texto de apoio do slide (máx 220 caracteres). Vazio se o título basta." },
-        },
-        required: ["titulo", "texto"],
-        additionalProperties: false,
-      },
-    },
-    legenda: { type: "string", description: "Legenda completa do post com hashtags" },
-  },
-  required: ["slides", "legenda"],
-  additionalProperties: false,
+const FORMATOS = { "4x5": [1080, 1350], "1x1": [1080, 1080], "9x16": [1080, 1920] };
+
+// estado do editor
+const carrossel = {
+  slides: [{ titulo: "Título da capa", texto: "", badge: true }],
+  legenda: "",
+  template: "classico",
+  formato: "4x5",
+  atual: 0,
 };
 
-document.getElementById("btn-gerar-carrossel").addEventListener("click", async (e) => {
-  const tema = v("carrossel-tema");
-  if (!tema) return alert("Informe o tema do carrossel.");
-
-  const out = document.getElementById("out-carrossel");
-  const preview = document.getElementById("carrossel-preview");
-  const acoes = document.getElementById("carrossel-acoes");
-  out.classList.remove("hidden");
-  out.classList.add("loading");
-  out.textContent = "Criando seu carrossel...";
-  preview.innerHTML = "";
-  acoes.classList.add("hidden");
-  e.target.disabled = true;
-
-  try {
-    const resultado = await chamarClaudeJSON({
-      system:
-        "Você é um copywriter especialista em carrosséis virais de Instagram para prestadores de serviço. " +
-        "Crie carrosséis de 7 a 9 slides: o 1º é a capa (gancho forte), os do meio desenvolvem o conteúdo " +
-        "com UMA ideia por slide, e o último é CTA claro. Escreva em português do Brasil." +
-        contextoPosicionamento(),
-      messages: [{ role: "user", content: `Crie um carrossel sobre: ${tema}` }],
-      jsonSchema: SCHEMA_CARROSSEL,
-    });
-
-    slidesAtuais = resultado.slides;
-    out.classList.remove("loading");
-    out.textContent = "LEGENDA DO POST:\n\n" + resultado.legenda;
-    adicionarBotaoCopiar(out);
-
-    // renderiza as artes
-    preview.innerHTML = "";
-    resultado.slides.forEach((slide, i) => {
-      const url = desenharSlide(slide, i, resultado.slides.length);
-      const img = document.createElement("img");
-      img.src = url;
-      img.className = "slide-thumb";
-      img.title = `Slide ${i + 1}`;
-      preview.appendChild(img);
-    });
-    acoes.classList.remove("hidden");
-  } catch (err) {
-    out.classList.remove("loading");
-    out.textContent = "❌ " + err.message;
-  } finally {
-    e.target.disabled = false;
-  }
-});
-
-/** Desenha um slide 1080x1350 no canvas e retorna dataURL PNG. */
-function desenharSlide(slide, indice, total) {
-  const cfg = getConfig();
-  const canvas = document.getElementById("slide-canvas");
-  const ctx = canvas.getContext("2d");
-  const W = 1080, H = 1350;
-
-  // fundo
-  ctx.fillStyle = cfg.corFundo;
-  ctx.fillRect(0, 0, W, H);
-
-  // barra de destaque no topo
-  ctx.fillStyle = cfg.corDestaque;
-  ctx.fillRect(0, 0, W, 18);
-
-  const ehCapa = indice === 0;
-  const ehUltimo = indice === total - 1;
-
-  // título
-  ctx.fillStyle = cfg.corTexto;
-  ctx.textAlign = "left";
-  const tamTitulo = ehCapa ? 84 : 64;
-  ctx.font = `bold ${tamTitulo}px Arial, sans-serif`;
-  const linhasTitulo = quebrarTexto(ctx, slide.titulo, W - 160);
-  let y = ehCapa ? 420 : 300;
-  for (const linha of linhasTitulo) {
-    ctx.fillText(linha, 80, y);
-    y += tamTitulo * 1.2;
-  }
-
-  // linha decorativa
-  ctx.fillStyle = cfg.corDestaque;
-  ctx.fillRect(80, y + 10, 140, 8);
-  y += 90;
-
-  // texto de apoio
-  if (slide.texto) {
-    ctx.fillStyle = cfg.corTexto;
-    ctx.globalAlpha = 0.92;
-    ctx.font = "44px Arial, sans-serif";
-    const linhasTexto = quebrarTexto(ctx, slide.texto, W - 160);
-    for (const linha of linhasTexto) {
-      ctx.fillText(linha, 80, y);
-      y += 62;
-    }
-    ctx.globalAlpha = 1;
-  }
-
-  // rodapé
-  ctx.font = "34px Arial, sans-serif";
-  ctx.fillStyle = cfg.corTexto;
-  ctx.globalAlpha = 0.75;
-  if (cfg.instagram) ctx.fillText(cfg.instagram, 80, H - 70);
-  ctx.textAlign = "right";
-  ctx.fillText(ehUltimo ? "" : `${indice + 1}/${total}  →`, W - 80, H - 70);
-  ctx.globalAlpha = 1;
-
-  // seta "arraste" na capa
-  if (ehCapa) {
-    ctx.textAlign = "right";
-    ctx.fillStyle = cfg.corDestaque;
-    ctx.font = "bold 40px Arial, sans-serif";
-    ctx.fillText("ARRASTE  →", W - 80, H - 140);
-  }
-
-  return canvas.toDataURL("image/png");
-}
-
-function quebrarTexto(ctx, texto, larguraMax) {
+/* ---------- utilidades de desenho ---------- */
+function envolver(ctx, texto, larguraMax) {
   const palavras = (texto || "").split(/\s+/);
   const linhas = [];
   let atual = "";
@@ -314,14 +187,376 @@ function quebrarTexto(ctx, texto, larguraMax) {
   return linhas;
 }
 
-document.getElementById("btn-baixar-slides").addEventListener("click", () => {
-  slidesAtuais.forEach((slide, i) => {
-    const url = desenharSlide(slide, i, slidesAtuais.length);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `slide-${String(i + 1).padStart(2, "0")}.png`;
-    a.click();
+function paleta(cfg) {
+  return {
+    navy: cfg.corFundo,
+    texto: cfg.corTexto,
+    ouro: cfg.corDestaque,
+    creme: "#f5f0e6",
+    cremeTexto: "#1c2740",
+    branco: "#ffffff",
+    handle: cfg.instagram || "",
+  };
+}
+
+const SERIF = "Georgia, 'Times New Roman', serif";
+const SANS = "Helvetica, Arial, sans-serif";
+
+function kicker(ctx, x, y, texto, cor) {
+  if (!texto) return;
+  ctx.save();
+  ctx.fillStyle = cor;
+  ctx.font = `600 26px ${SANS}`;
+  try { ctx.letterSpacing = "4px"; } catch (_) {}
+  ctx.fillText(texto.toUpperCase(), x, y);
+  ctx.restore();
+}
+
+/* ---------- os 5 modelos VGJ ---------- */
+const TEMPLATES = {
+  classico: {
+    nome: "Clássico",
+    swatch: (c) => [c.navy, c.ouro],
+    draw(ctx, W, H, s, idx, total, p) {
+      ctx.fillStyle = p.navy; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = p.ouro; ctx.fillRect(0, 0, W, 14);
+      ctx.textAlign = "left";
+      kicker(ctx, 90, 150, p.handle.replace("@", "") || "VGJ", p.ouro);
+      const tam = idx === 0 ? 92 : 68;
+      ctx.fillStyle = p.texto;
+      ctx.font = `bold ${tam}px ${SERIF}`;
+      let y = idx === 0 ? H * 0.4 : 300;
+      for (const l of envolver(ctx, s.titulo, W - 180)) { ctx.fillText(l, 90, y); y += tam * 1.18; }
+      ctx.fillStyle = p.ouro; ctx.fillRect(90, y - 20, 130, 6); y += 70;
+      if (s.texto) {
+        ctx.fillStyle = p.texto; ctx.globalAlpha = 0.9; ctx.font = `44px ${SANS}`;
+        for (const l of envolver(ctx, s.texto, W - 180)) { ctx.fillText(l, 90, y); y += 62; }
+        ctx.globalAlpha = 1;
+      }
+      rodape(ctx, W, H, s, idx, total, p, p.texto);
+    },
+  },
+
+  editorial: {
+    nome: "Editorial",
+    swatch: (c) => [c.creme, c.navy],
+    draw(ctx, W, H, s, idx, total, p) {
+      ctx.fillStyle = p.creme; ctx.fillRect(0, 0, W, H);
+      ctx.strokeStyle = p.ouro; ctx.lineWidth = 3;
+      ctx.strokeRect(48, 48, W - 96, H - 96);
+      ctx.textAlign = "left";
+      kicker(ctx, 100, 170, p.handle.replace("@", "") || "ARTIGO", p.ouro);
+      const tam = idx === 0 ? 88 : 64;
+      ctx.fillStyle = p.cremeTexto; ctx.font = `bold ${tam}px ${SERIF}`;
+      let y = 290;
+      for (const l of envolver(ctx, s.titulo, W - 220)) { ctx.fillText(l, 100, y); y += tam * 1.16; }
+      y += 24;
+      if (s.texto) {
+        ctx.fillStyle = "#3a4a63"; ctx.font = `italic 44px ${SERIF}`;
+        for (const l of envolver(ctx, s.texto, W - 220)) { ctx.fillText(l, 100, y); y += 62; }
+      }
+      rodape(ctx, W, H, s, idx, total, p, p.cremeTexto);
+    },
+  },
+
+  destaque: {
+    nome: "Destaque",
+    swatch: (c) => [c.navy, c.ouro],
+    draw(ctx, W, H, s, idx, total, p) {
+      ctx.fillStyle = p.navy; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = p.ouro; ctx.fillRect(90, H * 0.28, 12, H * 0.44);
+      ctx.textAlign = "left";
+      const tam = idx === 0 ? 96 : 74;
+      ctx.fillStyle = p.texto; ctx.font = `bold ${tam}px ${SERIF}`;
+      const linhas = envolver(ctx, s.titulo, W - 280);
+      let y = H / 2 - (linhas.length - 1) * tam * 0.58;
+      for (const l of linhas) { ctx.fillText(l, 150, y); y += tam * 1.16; }
+      if (s.texto) {
+        ctx.fillStyle = p.ouro; ctx.globalAlpha = 0.95; ctx.font = `40px ${SANS}`;
+        y += 20;
+        for (const l of envolver(ctx, s.texto, W - 280)) { ctx.fillText(l, 150, y); y += 56; }
+        ctx.globalAlpha = 1;
+      }
+      rodape(ctx, W, H, s, idx, total, p, p.texto);
+    },
+  },
+
+  minimal: {
+    nome: "Minimal",
+    swatch: (c) => [c.branco, c.ouro],
+    draw(ctx, W, H, s, idx, total, p) {
+      ctx.fillStyle = p.branco; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = p.ouro; ctx.fillRect(90, 150, 70, 6);
+      ctx.textAlign = "left";
+      const tam = idx === 0 ? 90 : 66;
+      ctx.fillStyle = "#12203a"; ctx.font = `bold ${tam}px ${SERIF}`;
+      let y = 320;
+      for (const l of envolver(ctx, s.titulo, W - 180)) { ctx.fillText(l, 90, y); y += tam * 1.16; }
+      y += 30;
+      if (s.texto) {
+        ctx.fillStyle = "#4a5877"; ctx.font = `44px ${SANS}`;
+        for (const l of envolver(ctx, s.texto, W - 180)) { ctx.fillText(l, 90, y); y += 62; }
+      }
+      rodape(ctx, W, H, s, idx, total, p, "#12203a");
+    },
+  },
+
+  depoimento: {
+    nome: "Depoimento",
+    swatch: (c) => [c.navy, c.ouro],
+    draw(ctx, W, H, s, idx, total, p) {
+      ctx.fillStyle = p.navy; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = p.ouro; ctx.font = `bold 260px ${SERIF}`;
+      ctx.textAlign = "left"; ctx.globalAlpha = 0.85;
+      ctx.fillText("“", 70, 300); ctx.globalAlpha = 1;
+      const tam = 62;
+      ctx.fillStyle = p.texto; ctx.font = `italic ${tam}px ${SERIF}`;
+      let y = 420;
+      for (const l of envolver(ctx, s.titulo, W - 200)) { ctx.fillText(l, 100, y); y += tam * 1.2; }
+      y += 30;
+      if (s.texto) {
+        ctx.fillStyle = p.ouro; ctx.font = `600 40px ${SANS}`;
+        for (const l of envolver(ctx, s.texto, W - 200)) { ctx.fillText(l, 100, y); y += 54; }
+      }
+      rodape(ctx, W, H, s, idx, total, p, p.texto);
+    },
+  },
+};
+
+function rodape(ctx, W, H, s, idx, total, p, corTexto) {
+  ctx.textAlign = "left";
+  ctx.font = `34px ${SANS}`;
+  ctx.fillStyle = corTexto; ctx.globalAlpha = 0.7;
+  if (p.handle) ctx.fillText(p.handle, 90, H - 70);
+  ctx.textAlign = "right";
+  if (idx < total - 1) ctx.fillText(`${idx + 1}/${total}`, W - 90, H - 70);
+  ctx.globalAlpha = 1;
+  if (s.badge) {
+    ctx.textAlign = "right";
+    ctx.fillStyle = p.ouro;
+    ctx.font = `bold 40px ${SANS}`;
+    ctx.fillText("ARRASTE  →", W - 90, H - 140);
+  }
+  ctx.textAlign = "left";
+}
+
+/* ---------- desenho num canvas alvo ---------- */
+function desenharEm(canvas, slide, idx) {
+  const [W, H] = FORMATOS[carrossel.formato];
+  canvas.width = W; canvas.height = H;
+  const ctx = canvas.getContext("2d");
+  const p = paleta(getConfig());
+  (TEMPLATES[carrossel.template] || TEMPLATES.classico).draw(ctx, W, H, slide, idx, carrossel.slides.length, p);
+}
+
+/* ---------- render do editor ---------- */
+function renderEditor() {
+  desenharEm(document.getElementById("edit-canvas"), carrossel.slides[carrossel.atual], carrossel.atual);
+  const s = carrossel.slides[carrossel.atual];
+  document.getElementById("edit-titulo").value = s.titulo;
+  document.getElementById("edit-texto").value = s.texto;
+  document.getElementById("edit-badge").checked = !!s.badge;
+  document.getElementById("edit-slide-tag").textContent =
+    `Slide ${carrossel.atual + 1} de ${carrossel.slides.length}` +
+    (carrossel.atual === 0 ? " · capa" : carrossel.atual === carrossel.slides.length - 1 ? " · CTA" : "");
+  renderTira();
+}
+
+function renderTira() {
+  const tira = document.getElementById("slides-strip");
+  tira.innerHTML = "";
+  carrossel.slides.forEach((slide, i) => {
+    const tmp = document.createElement("canvas");
+    desenharEm(tmp, slide, i);
+    const wrap = document.createElement("div");
+    wrap.className = "strip-thumb" + (i === carrossel.atual ? " active" : "");
+    wrap.draggable = true;
+    wrap.dataset.i = i;
+    const img = document.createElement("img");
+    img.src = tmp.toDataURL("image/png");
+    wrap.appendChild(img);
+    const num = document.createElement("span");
+    num.className = "num"; num.textContent = i + 1;
+    wrap.appendChild(num);
+    if (carrossel.slides.length > 1) {
+      const del = document.createElement("button");
+      del.className = "del"; del.textContent = "×"; del.title = "Excluir";
+      del.addEventListener("click", (ev) => { ev.stopPropagation(); excluirSlide(i); });
+      wrap.appendChild(del);
+    }
+    wrap.addEventListener("click", () => { carrossel.atual = i; renderEditor(); });
+    wrap.addEventListener("dragstart", (ev) => ev.dataTransfer.setData("i", i));
+    wrap.addEventListener("dragover", (ev) => ev.preventDefault());
+    wrap.addEventListener("drop", (ev) => {
+      ev.preventDefault();
+      moverSlide(Number(ev.dataTransfer.getData("i")), i);
+    });
+    tira.appendChild(wrap);
   });
+}
+
+function renderTemplateList() {
+  const lista = document.getElementById("template-list");
+  lista.innerHTML = "";
+  const p = paleta(getConfig());
+  Object.entries(TEMPLATES).forEach(([id, t]) => {
+    const card = document.createElement("div");
+    card.className = "template-card" + (id === carrossel.template ? " active" : "");
+    const [c1, c2] = t.swatch(p);
+    const sw = document.createElement("div");
+    sw.className = "template-swatch";
+    sw.style.background = `linear-gradient(135deg, ${c1} 60%, ${c2} 60%)`;
+    card.appendChild(sw);
+    card.appendChild(document.createTextNode(t.nome));
+    card.addEventListener("click", () => {
+      carrossel.template = id;
+      renderTemplateList();
+      renderEditor();
+    });
+    lista.appendChild(card);
+  });
+}
+
+function abrirEditorCarrossel() {
+  document.getElementById("editor-carrossel").classList.remove("hidden");
+  document.getElementById("slides-strip").classList.remove("hidden");
+  document.getElementById("carrossel-acoes").classList.remove("hidden");
+  renderTemplateList();
+  renderEditor();
+}
+
+function excluirSlide(i) {
+  carrossel.slides.splice(i, 1);
+  if (carrossel.atual >= carrossel.slides.length) carrossel.atual = carrossel.slides.length - 1;
+  renderEditor();
+}
+
+function moverSlide(de, para) {
+  if (de === para) return;
+  const [item] = carrossel.slides.splice(de, 1);
+  carrossel.slides.splice(para, 0, item);
+  carrossel.atual = para;
+  renderEditor();
+}
+
+/* ---------- edição ao vivo dos campos ---------- */
+document.getElementById("edit-titulo").addEventListener("input", (e) => {
+  carrossel.slides[carrossel.atual].titulo = e.target.value;
+  desenharEm(document.getElementById("edit-canvas"), carrossel.slides[carrossel.atual], carrossel.atual);
+  renderTira();
+});
+document.getElementById("edit-texto").addEventListener("input", (e) => {
+  carrossel.slides[carrossel.atual].texto = e.target.value;
+  desenharEm(document.getElementById("edit-canvas"), carrossel.slides[carrossel.atual], carrossel.atual);
+  renderTira();
+});
+document.getElementById("edit-badge").addEventListener("change", (e) => {
+  carrossel.slides[carrossel.atual].badge = e.target.checked;
+  renderEditor();
+});
+document.getElementById("edit-formato").addEventListener("change", (e) => {
+  carrossel.formato = e.target.value;
+  renderEditor();
+});
+
+/* ---------- botões ---------- */
+document.getElementById("btn-add-slide").addEventListener("click", () => {
+  carrossel.slides.push({ titulo: "Novo slide", texto: "", badge: false });
+  carrossel.atual = carrossel.slides.length - 1;
+  renderEditor();
+});
+
+document.getElementById("btn-carrossel-branco").addEventListener("click", () => {
+  carrossel.slides = [
+    { titulo: "Título da capa", texto: "Subtítulo de apoio", badge: true },
+    { titulo: "Slide 2", texto: "", badge: false },
+    { titulo: "Fale comigo no direct", texto: "Chamada para ação", badge: false },
+  ];
+  carrossel.atual = 0;
+  abrirEditorCarrossel();
+});
+
+document.getElementById("btn-baixar-slide").addEventListener("click", () => {
+  const tmp = document.createElement("canvas");
+  desenharEm(tmp, carrossel.slides[carrossel.atual], carrossel.atual);
+  baixarCanvas(tmp, `slide-${String(carrossel.atual + 1).padStart(2, "0")}.png`);
+});
+
+document.getElementById("btn-baixar-slides").addEventListener("click", () => {
+  carrossel.slides.forEach((slide, i) => {
+    const tmp = document.createElement("canvas");
+    desenharEm(tmp, slide, i);
+    baixarCanvas(tmp, `slide-${String(i + 1).padStart(2, "0")}.png`);
+  });
+});
+
+function baixarCanvas(canvas, nome) {
+  const a = document.createElement("a");
+  a.href = canvas.toDataURL("image/png");
+  a.download = nome;
+  a.click();
+}
+
+const SCHEMA_CARROSSEL = {
+  type: "object",
+  properties: {
+    slides: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          titulo: { type: "string", description: "Título curto e impactante do slide (máx 60 caracteres)" },
+          texto: { type: "string", description: "Texto de apoio do slide (máx 180 caracteres). Vazio se o título basta." },
+        },
+        required: ["titulo", "texto"],
+        additionalProperties: false,
+      },
+    },
+    legenda: { type: "string", description: "Legenda completa do post com hashtags" },
+  },
+  required: ["slides", "legenda"],
+  additionalProperties: false,
+};
+
+document.getElementById("btn-gerar-carrossel").addEventListener("click", async (e) => {
+  const tema = v("carrossel-tema");
+  if (!tema) return alert("Informe o tema do carrossel.");
+
+  const out = document.getElementById("out-carrossel");
+  out.classList.remove("hidden");
+  out.classList.add("loading");
+  out.textContent = "Criando seu carrossel...";
+  e.target.disabled = true;
+
+  try {
+    const resultado = await chamarClaudeJSON({
+      system:
+        "Você é um copywriter especialista em carrosséis virais de Instagram para prestadores de serviço. " +
+        "Crie carrosséis de 7 a 9 slides: o 1º é a capa (gancho forte), os do meio desenvolvem o conteúdo " +
+        "com UMA ideia por slide, e o último é CTA claro. Escreva em português do Brasil." +
+        contextoPosicionamento(),
+      messages: [{ role: "user", content: `Crie um carrossel sobre: ${tema}` }],
+      jsonSchema: SCHEMA_CARROSSEL,
+    });
+
+    carrossel.slides = resultado.slides.map((s, i) => ({
+      titulo: s.titulo,
+      texto: s.texto,
+      badge: i === 0,
+    }));
+    carrossel.legenda = resultado.legenda;
+    carrossel.atual = 0;
+
+    out.classList.remove("loading");
+    out.textContent = "LEGENDA DO POST:\n\n" + resultado.legenda;
+    adicionarBotaoCopiar(out);
+    abrirEditorCarrossel();
+  } catch (err) {
+    out.classList.remove("loading");
+    out.textContent = "❌ " + err.message;
+  } finally {
+    e.target.disabled = false;
+  }
 });
 
 /* ============================================================
