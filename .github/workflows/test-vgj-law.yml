@@ -1,0 +1,32 @@
+name: VGJ LAW Tests
+
+on:
+  pull_request:
+  push:
+    branches: [main, 'claude/**']
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright-core install --with-deps chromium
+
+      - name: Run E2E
+        run: |
+          CHROME=$(find "$HOME/.cache/ms-playwright" -type f \( -name chrome -o -name chromium \) | head -n 1)
+          test -n "$CHROME"
+          PW_CHROMIUM="$CHROME" npm test
