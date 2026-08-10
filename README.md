@@ -1,58 +1,64 @@
-# NAVE CRM — Aplicativo de Desktop
+# NAVE — Sistema Operacional do Escritório
 
-Sistema de gestão do escritório (comercial, jurídico, financeiro, WhatsApp via Zappfy e assistente IA), empacotado como aplicativo de desktop com Electron.
+CRM jurídico com **agente de IA autônomo** que opera o sistema: identifica o cliente no WhatsApp, faz triagem por área, qualifica, coleta e organiza documentos, movimenta o funil, agenda, cria tarefas e entrega um **resumo estruturado para o advogado** — encaminhando para análise humana tudo que exige decisão jurídica.
 
-## Como obter o instalador (Windows)
-
-1. Acesse a aba **Actions** deste repositório no GitHub.
-2. Abra a execução mais recente de **Build Desktop App**.
-3. Baixe o artefato **NAVE-CRM-Windows** — o `.zip` contém:
-   - `NAVE-CRM-Setup-1.0.0.exe` → instalador (cria atalho na área de trabalho e no menu Iniciar);
-   - `NAVE-CRM-Portable-1.0.0.exe` → versão portátil (executa direto, sem instalar).
-
-Também há um artefato **NAVE-CRM-Linux** (AppImage). Para gerar uma release com os arquivos anexados, crie uma tag `v1.0.0` (ou similar) e envie ao GitHub.
-
-> O instalador não é assinado digitalmente; na primeira execução o Windows SmartScreen pode exibir um aviso — clique em "Mais informações" → "Executar assim mesmo".
-
-## Rodar em modo de desenvolvimento
-
-```bash
-npm install
-npm start
+```
+CLIENTE → WHATSAPP → AGENTE DE IA → IDENTIFICAÇÃO → TRIAGEM → QUALIFICAÇÃO
+→ DOCUMENTOS → CRM/FUNIL → TAREFAS → AGENDA → RESUMO → VILMAR DECIDE
+→ EXECUÇÃO → ACOMPANHAMENTO → PÓS-ATENDIMENTO
 ```
 
-## Gerar o instalador localmente
+## Módulos
+
+| Tela | O que faz |
+|---|---|
+| **Painel** | "O que precisa da minha atenção agora?" — aprovações, handoffs, tarefas vencidas, reuniões, prazos, conversão por origem |
+| **Inbox** | Caixa de entrada unificada com filtros (IA atendendo, aguardando humano, urgente, sem resposta...), handoff IA↔humano explícito e resumo do caso na conversa |
+| **Funil** | Kanban de demandas com estágios **editáveis** (novo contato → triagem → ... → concluído); mudanças disparam automações |
+| **Clientes** | Contatos (PF, dedupe por telefone/CPF) e Empresas (PJ, N:N com contatos), com demandas, documentos, tarefas e histórico completo |
+| **Agenda** | Slots por expediente, agendar/confirmar/remarcar/cancelar; o agente agenda sozinho quando o cliente pede |
+| **Tarefas** | Central de tarefas + fila de **aprovações da IA** |
+| **Jurídico / Financeiro** | Processos, prazos, contratos e parcelas (módulos originais preservados) |
+| **Assistente** | IA com contexto real do escritório para textos e diagnósticos |
+| **Sistema** | Automações configuráveis, fluxos de triagem por área, base de conhecimento, permissões da IA e **auditoria completa** |
+
+## O agente de IA
+
+- Opera por **ferramentas** (motor de ações): `find_contact`, `create_case`, `move_pipeline`, `request_document`, `create_appointment`, `handoff_to_human`, `generate_case_summary` etc. — cada ação é validada, autorizada e **auditada**.
+- **Permissões por ferramenta** (Sistema → Permissões): *permitido*, *exige aprovação* (vira pendência para Vilmar) ou *bloqueado*. Ações críticas (petições, acordos, honorários, estratégia) não existem como ferramenta — são sempre humanas.
+- **Identidade institucional neutra** — sem nome de pessoa, sem fingir ser humano; se perguntarem, informa que é o canal automatizado do escritório.
+- **Regras anti-invenção**: nunca inventa jurisprudência, prazos, valores, andamentos ou documentos; na dúvida, registra e encaminha (conversa fica **AGUARDANDO VILMAR**).
+- Triagem **configurável por área** (planos de saúde, consumidor, bancário, golpes, trabalhista, cível, empresarial, previdenciário...) com perguntas, documentos, critérios e gatilhos de handoff próprios.
+- Grupos de WhatsApp nunca são atendidos.
+
+## Automações (Sistema → Automações)
+
+Novo lead → triagem · docs solicitados → "aguardando documentos" · documentação completa → avança estágio + tarefa de análise · reunião agendada → lembrete · reunião amanhã → confirmação ao cliente · cliente sem resposta → follow-up · docs pendentes há N dias → cobrança · prazo próximo → alerta · contratação → tarefas de estruturação · handoff → pendência para Vilmar. Todas editáveis/desativáveis, e é possível criar novas.
+
+## Testes
 
 ```bash
-npm install
-npm run dist:win    # Windows (rodar em uma máquina Windows)
-npm run dist:linux  # Linux (AppImage)
+npm test          # 12 cenários E2E (novo cliente, 2ª demanda, documentos, agenda,
+                  # handoff, fora de escopo, Vilmar assume/conclui, funil, retorno,
+                  # isolamento de demandas, aprovação humana) + persistência + UI
 ```
 
-Os arquivos saem na pasta `dist/`.
+Os testes rodam com um "cérebro" de IA roteirizado (`window.__NAVE_TEST_BRAIN`) — exercitam o orquestrador, as ferramentas, as automações e a auditoria reais, sem depender de rede. O CI executa a suíte antes de gerar os instaladores. Localmente sem o pacote `playwright`: `PW_CHROMIUM=/caminho/para/chromium npm test`.
 
-## Configuração dentro do aplicativo
+## Instalador / desenvolvimento
 
-Abra **⚙ Configurações** no canto superior direito:
+- **Instalador Windows**: aba **Actions → Build Desktop App** → artefato **NAVE-CRM-Windows** (gerado após os testes passarem). Tags `v*` anexam os binários a uma release.
+- **Desenvolvimento**: `npm install && npm start` (Electron). O `app/index.html` também abre direto no navegador (dados no `localStorage`).
 
-- **Inteligência Artificial (Anthropic)** — cole a sua chave da API (`sk-ant-...`), obtida em [platform.claude.com](https://platform.claude.com/) → *API Keys*. Sem a chave, o Assistente IA e a triagem automática do WhatsApp ficam desativados; todo o restante do sistema (leads, processos, prazos, financeiro, envio manual de WhatsApp) funciona normalmente.
-- **WhatsApp / Zappfy / Agente** — token e número da instância Zappfy, modo do agente (autônomo / copiloto / humano) e intervalo de sincronização.
+## Configuração (⚙ no app)
 
-> As credenciais (chave da IA e token da Zappfy) ficam gravadas **apenas no arquivo local de dados** do seu computador — nunca no código nem no repositório.
+- **IA (Anthropic)** — chave `sk-ant-...` de [platform.claude.com](https://platform.claude.com/). Sem a chave, o agente e o assistente ficam desativados; todo o resto funciona.
+- **WhatsApp (Zappfy)** — token/instância/número. **Sem a Zappfy o NAVE roda em "modo local"**: use *Inbox → Simular mensagem* para demonstrar o fluxo completo. Este é o **único ponto do sistema que depende de credencial externa** além da chave de IA.
+- **Agenda** — expediente e duração dos slots.
 
-## Onde ficam os dados
+As credenciais ficam **apenas no arquivo local de dados** (`%APPDATA%\nave-crm\nave-data.json` no Windows) — nunca no código nem no repositório. Para backup, copie esse arquivo.
 
-Os dados são gravados localmente, em um único arquivo JSON:
+## Limitações conhecidas (por dependerem de serviço externo)
 
-- **Windows:** `%APPDATA%\nave-crm\nave-data.json`
-- **Linux:** `~/.config/nave-crm/nave-data.json`
-- **macOS:** `~/Library/Application Support/nave-crm/nave-data.json`
-
-Para backup, basta copiar esse arquivo. Nada é enviado a servidores além das chamadas às APIs da Zappfy (WhatsApp) e da Anthropic (IA).
-
-O arquivo `app/index.html` também funciona sozinho em qualquer navegador (os dados ficam no `localStorage` do navegador) — útil como plano B, mas o aplicativo é a forma recomendada de uso: sem bloqueio de CORS e com dados em arquivo próprio.
-
-## Observações
-
-- O agente autônomo de WhatsApp opera **enquanto o aplicativo estiver aberto**, sincronizando a Zappfy no intervalo configurado. Para atendimento 24/7 com o aplicativo fechado seria necessário um backend/relay público (fora do escopo deste app).
-- Grupos de WhatsApp são ignorados por completo (não aparecem, não recebem resposta automática).
+- **Atendimento 24/7 com o app fechado** exige um relay/backend público para webhook da Zappfy — a arquitetura já separa o adapter (`app/js/whatsapp.js`), mas o NAVE não finge ter esse serviço; com o app aberto, o loop de sincronização opera o agente continuamente.
+- **Transcrição de áudio** — áudios são registrados e marcados; a transcrição automática requer um serviço de STT (adapter identificado no código). O agente pede ao cliente para escrever quando recebe áudio.
