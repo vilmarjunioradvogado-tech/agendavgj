@@ -1,8 +1,8 @@
 {
-  "name": "nave-crm",
-  "productName": "NAVE CRM",
+  "name": "vgj-law",
+  "productName": "VGJ LAW",
   "version": "1.0.0",
-  "description": "NAVE CRM — Gestão do escritório: comercial, jurídico, financeiro, WhatsApp (Zappfy) e assistente IA",
+  "description": "VGJ LAW — Sistema operacional do escritório: CRM jurídico, WhatsApp, agente de IA, automações, agenda e funil",
   "author": "Vilmar Guimarães Júnior Advocacia",
   "license": "UNLICENSED",
   "private": true,
@@ -21,8 +21,8 @@
     "playwright-core": "^1.49.0"
   },
   "build": {
-    "appId": "tech.vilmarjunioradvogado.navecrm",
-    "productName": "NAVE CRM",
+    "appId": "tech.vilmarjunioradvogado.vgjlaw",
+    "productName": "VGJ LAW",
     "files": [
       "main.js",
       "preload.js",
@@ -42,11 +42,11 @@
     "nsis": {
       "oneClick": true,
       "perMachine": false,
-      "shortcutName": "NAVE CRM",
-      "artifactName": "NAVE-CRM-Setup-${version}.${ext}"
+      "shortcutName": "VGJ LAW",
+      "artifactName": "VGJ-LAW-Setup-${version}.${ext}"
     },
     "portable": {
-      "artifactName": "NAVE-CRM-Portable-${version}.${ext}"
+      "artifactName": "VGJ-LAW-Portable-${version}.${ext}"
     },
     "linux": {
       "target": ["AppImage"],

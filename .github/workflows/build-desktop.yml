@@ -42,7 +42,7 @@ jobs:
       - name: Publicar artefatos
         uses: actions/upload-artifact@v4
         with:
-          name: NAVE-CRM-Windows
+          name: VGJ-LAW-Windows
           path: |
             dist/*.exe
           if-no-files-found: error
@@ -73,7 +73,7 @@ jobs:
       - name: Publicar artefatos
         uses: actions/upload-artifact@v4
         with:
-          name: NAVE-CRM-Linux
+          name: VGJ-LAW-Linux
           path: dist/*.AppImage
           if-no-files-found: error
 

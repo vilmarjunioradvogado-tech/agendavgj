@@ -32,7 +32,7 @@ function docAddModal(caseId) {
   openModal(`<h3>Registrar documento recebido</h3><form id="docForm">
   <div class="field"><label>Nome do documento</label><input name="name" required placeholder="relatorio-medico.pdf"></div>
   <div class="field"><label>Categoria</label><select name="category"><option value="">(sugerir automaticamente)</option>${N.DOC_CATEGORIES.map(c => `<option>${c}</option>`).join('')}</select></div>
-  <div class="field"><label>Arquivo (opcional, até 1,5 MB — fica salvo no NAVE)</label><input name="file" type="file"></div>
+  <div class="field"><label>Arquivo (opcional, até 1,5 MB — fica salvo no VGJ LAW)</label><input name="file" type="file"></div>
   <div class="row"><button class="btn primary">Registrar</button><button type="button" class="btn" data-close>Cancelar</button></div></form>`);
   $('docForm').onsubmit = async e => {
     e.preventDefault();

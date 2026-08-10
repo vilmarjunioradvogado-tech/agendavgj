@@ -60,7 +60,7 @@ const KEYS = ['config', 'contacts', 'companies', 'cases', 'pipeline', 'documents
 const LIST_KEYS = KEYS.filter(k => !['config', 'pipeline'].includes(k));
 
 const defaultConfig = {
-  office: 'NAVE Advocacia', lawyer: 'Vilmar Guimarães Júnior', oab: '', goal: 30000, pix: '',
+  office: 'Vilmar Guimarães Júnior Advocacia', lawyer: 'Vilmar Guimarães Júnior', oab: '', goal: 30000, pix: '',
   anthropicApiKey: '', aiModel: 'claude-sonnet-4-6',
   users: [{ id: 'vilmar', name: 'Vilmar', role: 'administrador' }, { id: 'ia', name: 'Agente IA', role: 'agente_ia' }],
   roles: ['administrador', 'advogado', 'assistente', 'atendimento', 'agente_ia'],

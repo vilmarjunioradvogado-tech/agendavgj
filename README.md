@@ -1,4 +1,4 @@
-# NAVE — Sistema Operacional do Escritório
+# VGJ LAW — Sistema Operacional do Escritório
 
 CRM jurídico com **agente de IA autônomo** que opera o sistema: identifica o cliente no WhatsApp, faz triagem por área, qualifica, coleta e organiza documentos, movimenta o funil, agenda, cria tarefas e entrega um **resumo estruturado para o advogado** — encaminhando para análise humana tudo que exige decisão jurídica.
 
@@ -7,6 +7,8 @@ CLIENTE → WHATSAPP → AGENTE DE IA → IDENTIFICAÇÃO → TRIAGEM → QUALIF
 → DOCUMENTOS → CRM/FUNIL → TAREFAS → AGENDA → RESUMO → VILMAR DECIDE
 → EXECUÇÃO → ACOMPANHAMENTO → PÓS-ATENDIMENTO
 ```
+
+> **Identidade do produto:** VGJ LAW é o nome do produto (aplicação, instalador, título e identidade visual). "NAVE" permanece apenas como namespace interno do código (`window.NAVE`).
 
 ## Módulos
 
@@ -47,18 +49,18 @@ Os testes rodam com um "cérebro" de IA roteirizado (`window.__NAVE_TEST_BRAIN`)
 
 ## Instalador / desenvolvimento
 
-- **Instalador Windows**: aba **Actions → Build Desktop App** → artefato **NAVE-CRM-Windows** (gerado após os testes passarem). Tags `v*` anexam os binários a uma release.
+- **Instalador Windows**: aba **Actions → Build Desktop App** → artefato **VGJ-LAW-Windows** (gerado após os testes passarem). Tags `v*` anexam os binários a uma release.
 - **Desenvolvimento**: `npm install && npm start` (Electron). O `app/index.html` também abre direto no navegador (dados no `localStorage`).
 
 ## Configuração (⚙ no app)
 
 - **IA (Anthropic)** — chave `sk-ant-...` de [platform.claude.com](https://platform.claude.com/). Sem a chave, o agente e o assistente ficam desativados; todo o resto funciona.
-- **WhatsApp (Zappfy)** — token/instância/número. **Sem a Zappfy o NAVE roda em "modo local"**: use *Inbox → Simular mensagem* para demonstrar o fluxo completo. Este é o **único ponto do sistema que depende de credencial externa** além da chave de IA.
+- **WhatsApp (Zappfy)** — token/instância/número. **Sem a Zappfy o sistema roda em "modo local"**: use *Inbox → Simular mensagem* para demonstrar o fluxo completo. Este é o **único ponto do sistema que depende de credencial externa** além da chave de IA.
 - **Agenda** — expediente e duração dos slots.
 
-As credenciais ficam **apenas no arquivo local de dados** (`%APPDATA%\nave-crm\nave-data.json` no Windows) — nunca no código nem no repositório. Para backup, copie esse arquivo.
+As credenciais ficam **apenas no arquivo local de dados** (`%APPDATA%\vgj-law\nave-data.json` no Windows) — nunca no código nem no repositório. Para backup, copie esse arquivo.
 
 ## Limitações conhecidas (por dependerem de serviço externo)
 
-- **Atendimento 24/7 com o app fechado** exige um relay/backend público para webhook da Zappfy — a arquitetura já separa o adapter (`app/js/whatsapp.js`), mas o NAVE não finge ter esse serviço; com o app aberto, o loop de sincronização opera o agente continuamente.
+- **Atendimento 24/7 com o app fechado** exige um relay/backend público para webhook da Zappfy — a arquitetura já separa o adapter (`app/js/whatsapp.js`), mas o sistema não finge ter esse serviço; com o app aberto, o loop de sincronização opera o agente continuamente.
 - **Transcrição de áudio** — áudios são registrados e marcados; a transcrição automática requer um serviço de STT (adapter identificado no código). O agente pede ao cliente para escrever quando recebe áudio.

@@ -66,7 +66,7 @@ async function waSend(phone, text, opts = {}) {
   if (!p) { if (!opts.silent) toast('Número de destino inválido.'); return false; }
   if (String(phone || '').includes('@g.us')) { if (!opts.silent) toast('Envio bloqueado: grupos do WhatsApp estão desativados.'); return false; }
   const target = S.whatsappChats.find(c => normPhone(c.phone) === p);
-  if (waIsGroup(target)) { if (!opts.silent) toast('Envio bloqueado: o NAVE não envia mensagens para grupos.'); return false; }
+  if (waIsGroup(target)) { if (!opts.silent) toast('Envio bloqueado: o VGJ LAW não envia mensagens para grupos.'); return false; }
   let provider = null;
   if (!offlineMode()) {
     try {

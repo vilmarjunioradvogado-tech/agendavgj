@@ -131,7 +131,7 @@ function processModal() {
   <div class="row"><button class="btn primary">Salvar</button><button type="button" class="btn" data-close>Cancelar</button></div></form>`);
   $('processForm').onsubmit = async e => {
     e.preventDefault(); const f = new FormData(e.target); const c = N.contactById(f.get('contactId'));
-    S.processes.push({ id: uid(), clientId: c.id, clientName: c.name, number: f.get('number'), court: f.get('court'), phase: f.get('phase'), responsible: S.config.lawyer || '', createdAt: now(), folder: 'NAVE-' + c.id });
+    S.processes.push({ id: uid(), clientId: c.id, clientName: c.name, number: f.get('number'), court: f.get('court'), phase: f.get('phase'), responsible: S.config.lawyer || '', createdAt: now(), folder: 'VGJ-' + c.id });
     await N.persist('processes'); closeModal(); toast('Processo criado');
   };
 }
@@ -265,7 +265,7 @@ async function sendAssistant(prefix) {
   if (!text) return;
   S.chat.push({ id: uid(), role: 'user', content: text, at: now() });
   await sset('chat', S.chat); N.views.assistente();
-  const system = `Você é o Assistente NAVE do escritório ${S.config.office}. Responda em português do Brasil, em até ~180 palavras. Use apenas os dados fornecidos. Nunca invente jurisprudência, processos, estatísticas ou fatos. Para textos ao cliente, entregue texto pronto para copiar. Observe o Provimento 205/2021 e não prometa resultado. Contexto real: ${JSON.stringify(N.aiContext())}`;
+  const system = `Você é o Assistente VGJ LAW do escritório ${S.config.office}. Responda em português do Brasil, em até ~180 palavras. Use apenas os dados fornecidos. Nunca invente jurisprudência, processos, estatísticas ou fatos. Para textos ao cliente, entregue texto pronto para copiar. Observe o Provimento 205/2021 e não prometa resultado. Contexto real: ${JSON.stringify(N.aiContext())}`;
   try {
     const answer = (await N.aiMessages(system, [{ role: 'user', content: text }], 1000)) || 'Não foi possível obter resposta.';
     S.chat.push({ id: uid(), role: 'assistant', content: answer, at: now() });
