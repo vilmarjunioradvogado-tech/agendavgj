@@ -3,7 +3,7 @@ name: VGJ LAW Tests
 on:
   pull_request:
   push:
-    branches: [main, 'claude/**']
+    branches: ['claude/**']
 
 jobs:
   e2e:
@@ -17,16 +17,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Chromium
-        run: npx playwright-core install --with-deps chromium
-
-      - name: Run E2E
+      - name: Instalar Playwright + Chromium
         run: |
-          CHROME=$(find "$HOME/.cache/ms-playwright" -type f \( -name chrome -o -name chromium \) | head -n 1)
-          test -n "$CHROME"
-          PW_CHROMIUM="$CHROME" npm test
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+
+      - name: Rodar suíte E2E (12 cenários)
+        run: node tests/e2e.js
