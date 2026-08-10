@@ -23,12 +23,10 @@ jobs:
         run: npm ci
 
       - name: Install Chromium
-        run: npx playwright-core install chromium
+        run: npx playwright-core install --with-deps chromium
 
       - name: Run E2E
-        env:
-          PW_CHROMIUM: ${{ github.workspace }}/node_modules/playwright-core/.local-browsers/chromium-*/chrome-linux/chrome
         run: |
-          CHROME=$(find node_modules/playwright-core/.local-browsers -type f -name chrome -o -name chromium | head -n 1)
+          CHROME=$(find "$HOME/.cache/ms-playwright" -type f \( -name chrome -o -name chromium \) | head -n 1)
           test -n "$CHROME"
           PW_CHROMIUM="$CHROME" npm test
