@@ -1,44 +1,23 @@
 {
-  "name": "nave-crm",
-  "productName": "NAVE CRM",
+  "name": "vgj-law",
+  "productName": "VGJ LAW",
   "version": "1.0.0",
-  "description": "NAVE CRM — Gestão do escritório: comercial, jurídico, financeiro, WhatsApp (Zappfy) e assistente IA",
+  "description": "VGJ LAW — Sistema operacional do escritório: comercial, jurídico, financeiro, WhatsApp e agente de IA",
   "author": "Vilmar Guimarães Júnior Advocacia",
   "license": "UNLICENSED",
   "private": true,
   "main": "main.js",
-  "scripts": {
-    "start": "electron .",
-    "test": "node --test test/*.test.js",
-    "dist": "electron-builder",
-    "dist:win": "electron-builder --win",
-    "dist:linux": "electron-builder --linux",
-    "dist:mac": "electron-builder --mac"
-  },
-  "devDependencies": {
-    "electron": "^33.4.11",
-    "electron-builder": "^25.1.8"
-  },
+  "scripts": {"start":"electron .","test":"node --test test/*.test.js","dist":"electron-builder","dist:win":"electron-builder --win","dist:linux":"electron-builder --linux","dist:mac":"electron-builder --mac"},
+  "devDependencies": {"electron":"^33.4.11","electron-builder":"^25.1.8"},
   "build": {
-    "appId": "tech.vilmarjunioradvogado.navecrm",
-    "productName": "NAVE CRM",
-    "files": ["main.js", "preload.js", "core/**/*", "app/**/*"],
-    "directories": { "output": "dist", "buildResources": "build" },
-    "win": {
-      "target": [
-        { "target": "nsis", "arch": ["x64"] },
-        { "target": "portable", "arch": ["x64"] }
-      ],
-      "icon": "build/icon.png"
-    },
-    "nsis": {
-      "oneClick": true,
-      "perMachine": false,
-      "shortcutName": "NAVE CRM",
-      "artifactName": "NAVE-CRM-Setup-${version}.${ext}"
-    },
-    "portable": { "artifactName": "NAVE-CRM-Portable-${version}.${ext}" },
-    "linux": { "target": ["AppImage"], "category": "Office", "icon": "build/icon.png" },
-    "mac": { "target": ["dmg"], "category": "public.app-category.business", "icon": "build/icon.png" }
+    "appId":"tech.vilmarjunioradvogado.vgjlaw",
+    "productName":"VGJ LAW",
+    "files":["main.js","preload.js","core/**/*","app/**/*"],
+    "directories":{"output":"dist","buildResources":"build"},
+    "win":{"target":[{"target":"nsis","arch":["x64"]},{"target":"portable","arch":["x64"]}],"icon":"build/icon.png"},
+    "nsis":{"oneClick":true,"perMachine":false,"shortcutName":"VGJ LAW","artifactName":"VGJ-LAW-Setup-${version}.${ext}"},
+    "portable":{"artifactName":"VGJ-LAW-Portable-${version}.${ext}"},
+    "linux":{"target":["AppImage"],"category":"Office","icon":"build/icon.png"},
+    "mac":{"target":["dmg"],"category":"public.app-category.business","icon":"build/icon.png"}
   }
 }
