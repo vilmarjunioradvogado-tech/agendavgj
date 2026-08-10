@@ -1,58 +1,32 @@
-# NAVE CRM — Aplicativo de Desktop
+# VGJ LAW — Aplicativo de Desktop
 
-Sistema de gestão do escritório (comercial, jurídico, financeiro, WhatsApp via Zappfy e assistente IA), empacotado como aplicativo de desktop com Electron.
+Sistema operacional do escritório: comercial, jurídico, financeiro, WhatsApp via Zappfy e agente de IA, empacotado como aplicativo desktop com Electron.
 
-## Como obter o instalador (Windows)
+## Instalação
 
-1. Acesse a aba **Actions** deste repositório no GitHub.
-2. Abra a execução mais recente de **Build Desktop App**.
-3. Baixe o artefato **NAVE-CRM-Windows** — o `.zip` contém:
-   - `NAVE-CRM-Setup-1.0.0.exe` → instalador (cria atalho na área de trabalho e no menu Iniciar);
-   - `NAVE-CRM-Portable-1.0.0.exe` → versão portátil (executa direto, sem instalar).
+O instalador Windows é gerado pelo workflow **Build Desktop App**. Os artefatos são **VGJ-LAW-Windows**, com instalador e versão portátil.
 
-Também há um artefato **NAVE-CRM-Linux** (AppImage). Para gerar uma release com os arquivos anexados, crie uma tag `v1.0.0` (ou similar) e envie ao GitHub.
-
-> O instalador não é assinado digitalmente; na primeira execução o Windows SmartScreen pode exibir um aviso — clique em "Mais informações" → "Executar assim mesmo".
-
-## Rodar em modo de desenvolvimento
+## Desenvolvimento
 
 ```bash
 npm install
 npm start
 ```
 
-## Gerar o instalador localmente
+## Configuração
 
-```bash
-npm install
-npm run dist:win    # Windows (rodar em uma máquina Windows)
-npm run dist:linux  # Linux (AppImage)
-```
+Em **Configurações**, informe a chave da API Anthropic e as credenciais da Zappfy. As credenciais ficam no armazenamento local do computador e não são incluídas no código.
 
-Os arquivos saem na pasta `dist/`.
+## Dados
 
-## Configuração dentro do aplicativo
+O aplicativo mantém os dados operacionais localmente. O backup deve preservar o arquivo de dados da aplicação.
 
-Abra **⚙ Configurações** no canto superior direito:
+## Operação
 
-- **Inteligência Artificial (Anthropic)** — cole a sua chave da API (`sk-ant-...`), obtida em [platform.claude.com](https://platform.claude.com/) → *API Keys*. Sem a chave, o Assistente IA e a triagem automática do WhatsApp ficam desativados; todo o restante do sistema (leads, processos, prazos, financeiro, envio manual de WhatsApp) funciona normalmente.
-- **WhatsApp / Zappfy / Agente** — token e número da instância Zappfy, modo do agente (autônomo / copiloto / humano) e intervalo de sincronização.
+O agente pode atender conversas individuais do WhatsApp, realizar triagem, atualizar o CRM, criar tarefas, solicitar documentos, organizar demandas e encaminhar situações que exigem decisão jurídica para Vilmar.
 
-> As credenciais (chave da IA e token da Zappfy) ficam gravadas **apenas no arquivo local de dados** do seu computador — nunca no código nem no repositório.
+Grupos de WhatsApp são ignorados e não recebem respostas automáticas.
 
-## Onde ficam os dados
+## Identidade do produto
 
-Os dados são gravados localmente, em um único arquivo JSON:
-
-- **Windows:** `%APPDATA%\nave-crm\nave-data.json`
-- **Linux:** `~/.config/nave-crm/nave-data.json`
-- **macOS:** `~/Library/Application Support/nave-crm/nave-data.json`
-
-Para backup, basta copiar esse arquivo. Nada é enviado a servidores além das chamadas às APIs da Zappfy (WhatsApp) e da Anthropic (IA).
-
-O arquivo `app/index.html` também funciona sozinho em qualquer navegador (os dados ficam no `localStorage` do navegador) — útil como plano B, mas o aplicativo é a forma recomendada de uso: sem bloqueio de CORS e com dados em arquivo próprio.
-
-## Observações
-
-- O agente autônomo de WhatsApp opera **enquanto o aplicativo estiver aberto**, sincronizando a Zappfy no intervalo configurado. Para atendimento 24/7 com o aplicativo fechado seria necessário um backend/relay público (fora do escopo deste app).
-- Grupos de WhatsApp são ignorados por completo (não aparecem, não recebem resposta automática).
+**VGJ LAW** é o nome do produto. Não utilizar mais **NAVE CRM** como nome da aplicação, instalador, título ou identidade visual do sistema.
