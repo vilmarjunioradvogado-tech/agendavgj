@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>PJe para Markdown</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header>
+    <h1>PJe → Markdown</h1>
+  </header>
+
+  <section id="actions">
+    <button type="button" id="btn-select">Selecionar trecho na página</button>
+    <button type="button" id="btn-whole-page">Converter página inteira</button>
+  </section>
+
+  <p id="status"></p>
+
+  <section id="result">
+    <textarea id="markdown-output" spellcheck="false" placeholder="O markdown capturado aparecerá aqui..."></textarea>
+    <div id="result-actions">
+      <button type="button" id="btn-copy">Copiar</button>
+      <button type="button" id="btn-download">Baixar .md</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>Dica: use "Selecionar trecho" e clique no bloco do processo (andamentos, partes, documentos) que quer converter.</p>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

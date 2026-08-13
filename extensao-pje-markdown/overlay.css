@@ -1,0 +1,133 @@
+#pje-md-fab {
+  all: initial;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 2147483647;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  background: #1f6feb;
+  padding: 10px 16px;
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  user-select: none;
+}
+
+#pje-md-fab:hover {
+  background: #1a5fd0;
+}
+
+body.pje-md-picking,
+body.pje-md-picking * {
+  cursor: crosshair !important;
+}
+
+.pje-md-hover {
+  outline: 2px solid #1f6feb !important;
+  outline-offset: 1px !important;
+  background-color: rgba(31, 111, 235, 0.08) !important;
+}
+
+#pje-md-hint {
+  all: initial;
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2147483647;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 13px;
+  color: #ffffff;
+  background: #24292f;
+  padding: 8px 14px;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+#pje-md-panel {
+  all: initial;
+  position: fixed;
+  top: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(720px, 90vw);
+  height: 80vh;
+  z-index: 2147483647;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  overflow: hidden;
+}
+
+#pje-md-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: #24292f;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#pje-md-panel-header button {
+  all: unset;
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+#pje-md-panel-header button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+#pje-md-panel-text {
+  all: unset;
+  flex: 1;
+  box-sizing: border-box;
+  padding: 14px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #1f2328;
+  white-space: pre-wrap;
+  overflow-y: auto;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+#pje-md-panel-actions {
+  display: flex;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #f6f8fa;
+}
+
+#pje-md-panel-actions button {
+  all: unset;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 6px;
+  background: #1f6feb;
+  color: #ffffff;
+}
+
+#pje-md-panel-actions button:hover {
+  background: #1a5fd0;
+}
+
+#pje-md-panel-actions button[data-action="reselect"] {
+  background: #6e7781;
+}
+
+#pje-md-panel-actions button[data-action="reselect"]:hover {
+  background: #57606a;
+}
