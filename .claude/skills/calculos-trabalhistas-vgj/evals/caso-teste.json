@@ -1,0 +1,29 @@
+{
+  "processo": "0000000-00.2026.5.05.0612",
+  "reclamante": "Teste da Silva",
+  "reclamada": "Empresa Exemplo Ltda.",
+  "contrato": {
+    "admissao": "2021-03-15",
+    "rescisao": "2026-06-10",
+    "salarioBase": 3000,
+    "modalidade": "sem_justa_causa",
+    "avisoPrevio": "indenizado",
+    "periodosAquisitivosGozados": 4,
+    "faltasInjustificadas": 0,
+    "dependentesIR": 0,
+    "fgtsRecolhido": true
+  },
+  "postulacoes": {
+    "competenciaInicial": "2021-06",
+    "competenciaFinal": "2026-06",
+    "horasExtras": { "divisor": 220, "he50PorMes": 20, "he100PorMes": 0 },
+    "multa477": true
+  },
+  "processual": {
+    "ajuizamento": "2026-07-01",
+    "citacao": "2026-07-20",
+    "dataAtualizacao": "2026-08-13",
+    "regimeAtualizacao": "selic",
+    "honorariosPercentual": 15
+  }
+}
