@@ -1,5 +1,19 @@
 # VGJ LAW — Sistema Operacional do Escritório
 
+## ✍️ Copywriting Engine — como usar via chat (celular e computador)
+
+O repositório inclui a skill **copywriting** (`.claude/skills/copywriting/`): um copywriter estratégico sênior com 30 módulos e 42 frameworks, incluindo modos específicos para publicidade da advocacia (OAB) e Direito da Saúde.
+
+**Duas formas de usar:**
+
+1. **Em qualquer conversa do Claude (recomendado)** — instale a skill na sua conta:
+   app do Claude ou [claude.ai](https://claude.ai) → **Configurações → Recursos (Capabilities) → Skills → Carregar skill** → envie o arquivo `copywriting-skill.zip`. Depois disso, é só pedir copy em qualquer chat, no celular ou no computador.
+2. **Em sessões do Claude Code neste repositório** — a skill já está instalada e ativa automaticamente (via `CLAUDE.md`): abra uma sessão no repositório `agendavgj` e digite `/auto` seguido do seu briefing, ou simplesmente peça o texto que precisa.
+
+**Comandos principais:** `/auto` (cadeia completa — o principal) · `/copy` · `/oferta` · `/diagnostico` · `/critica` · `/ab` · `/juridico` · `/saude` · formatos: `/headline`, `/anuncio`, `/pagina`, `/email`, `/carrossel`, `/video`, `/whatsapp`.
+
+---
+
 CRM jurídico com **agente de IA autônomo** que opera o sistema: identifica o cliente no WhatsApp, faz triagem por área, qualifica, coleta e organiza documentos, movimenta o funil, agenda, cria tarefas e entrega um **resumo estruturado para o advogado** — encaminhando para análise humana tudo que exige decisão jurídica.
 
 ```
