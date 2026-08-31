@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "kairogen": {
+      "type": "http",
+      "url": "https://kairogen.ai/mcp",
+      "headers": {
+        "Authorization": "Bearer ${KAIROGEN_MCP_TOKEN}"
+      }
+    }
+  }
+}

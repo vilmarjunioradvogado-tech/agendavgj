@@ -1,0 +1,21 @@
+{
+  "model": "nano-banana-2",
+  "output_dir": "drafts",
+  "image": {
+    "format": "png",
+    "aspect_ratio": "4:5",
+    "resolution": "1080x1350",
+    "slides_por_carrossel": { "min": 5, "max": 7 }
+  },
+  "style": {
+    "preset": "rembrandt-lighting-estudio-profissional",
+    "mood": "sobrio-elegante-corporativo",
+    "background": "escuro-ou-neutro",
+    "typography": "limpa-alto-contraste",
+    "layout": {
+      "elemento_grafico": "centralizado",
+      "texto_destaque": "parte-inferior",
+      "identificacao_profissional": "topo-discreto"
+    }
+  }
+}

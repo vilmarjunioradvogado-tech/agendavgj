@@ -1,0 +1,12 @@
+# Credenciais e configuração local — nunca versionar
+.env
+.mcp.json
+
+# Artes geradas aguardando validação do advogado (trabalho local)
+drafts/*
+!drafts/.gitkeep
+
+# Lotes aprovados (locais por padrão; remova as 2 linhas abaixo
+# se quiser versionar o histórico de lotes publicados)
+approved/*
+!approved/.gitkeep
