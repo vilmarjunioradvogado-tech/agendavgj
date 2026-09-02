@@ -8,6 +8,13 @@ description: |
   inflated symbolism, promotional language, superficial -ing analyses, vague
   attributions, em dash overuse, rule of three, AI vocabulary words, negative
   parallelisms, and excessive conjunctive phrases.
+  USO OBRIGATORIO EM PECAS JURIDICAS: aplique SEMPRE, sem excecao, ao redigir ou
+  revisar qualquer peca em portugues - peticao inicial, contestacao, impugnacao,
+  replica, recurso, apelacao, agravo, embargos, manifestacao, parecer, notificacao,
+  contrato, procuracao - mesmo que o usuario nao cite "humanizar". Nesse caso siga
+  tambem a secao "Pecas juridicas (pt-BR)", que limita o uso de negrito, travessao
+  e dois-pontos. Complementa a skill tipografia-juridica: aquela cuida da forma
+  (fonte, margens, estrutura), esta cuida do texto.
 allowed-tools:
   - Read
   - Write
@@ -64,6 +71,76 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 ### After (has a pulse):
 > I genuinely don't know how to feel about this one. 3 million lines of code, generated while the humans presumably slept. Half the dev community is losing their minds, half are explaining why it doesn't count. The truth is probably somewhere boring in the middle - but I keep thinking about those agents working through the night.
+
+---
+
+## Peças jurídicas (pt-BR) — regra permanente
+
+Esta seção vale para **toda** peça: petição inicial, contestação, impugnação, réplica, recurso, manifestação, parecer, notificação, contrato, procuração. Aplica-se mesmo quando o pedido do usuário não menciona "humanizar".
+
+Ela convive com a skill `tipografia-juridica`: aquela define a **forma** (Times New Roman 12, justificado, 1,5, margens, estrutura de seções). Esta define o **texto**. Nada aqui altera a formatação do padrão da casa.
+
+### Contenção no negrito
+
+O negrito é do padrão da casa, mas tem lugar certo:
+
+- **Mantém-se sempre:** endereçamento, número do processo, nomes das partes na qualificação, título da ação, títulos de seção (I, II, III...) e subitens, nome na assinatura.
+- **No corpo do texto:** no máximo uma expressão em negrito por parágrafo, e só quando for a tese, o pedido, um valor ou um prazo decisivo. Se tudo está em negrito, nada está.
+- **Nunca:** frases inteiras em negrito, parágrafo inteiro em negrito, negrito somado a caixa alta no meio do texto corrido, negrito em conectivo ("**Ademais**", "**Todavia**"), negrito para reforçar adjetivo ("é **absolutamente** descabido").
+
+Antes de entregar, conte os trechos em negrito no corpo. Se passarem de um por parágrafo, corte os mais fracos.
+
+### Travessão
+
+Não usar travessão como recurso de ênfase ou de respiro dramático. Uso legítimo do travessão em peça: aposto explicativo longo e ocasional, e diálogo (que quase nunca aparece).
+
+- Errado: "A parte autora não juntou o contrato — documento essencial — e ainda assim pede a inversão."
+- Certo: "A parte autora não juntou o contrato, documento essencial, e ainda assim pede a inversão."
+
+Vírgula, parênteses ou ponto final resolvem quase todos os casos. Se o parágrafo tem dois travessões, sobra pelo menos um.
+
+### Dois-pontos
+
+Dois-pontos servem para anunciar enumeração, citação ou transcrição. Não servem para criar suspense retórico.
+
+- Errado: "O ponto é um só: a prescrição já correu."
+- Certo: "A prescrição já correu."
+- Errado: "Vejamos o que diz a jurisprudência: a orientação é pacífica."
+- Certo: "A orientação do STJ é pacífica nesse ponto."
+
+Um par de dois-pontos por seção costuma bastar. Nunca dois-pontos duas vezes na mesma frase.
+
+### Vocabulário de IA em português
+
+Traduzir a lista da seção 7 não resolve. Em português os sinais são outros:
+
+restou demonstrado / resta claro / cumpre destacar / cumpre salientar / mister se faz / vale ressaltar / imperioso destacar / nesse diapasão / nessa esteira / nesse sentido (repetido) / à luz de / no bojo de / de suma importância / crucial / fundamental (como muleta) / robusto conjunto probatório / cristalino / inequívoco / patente / flagrante / escorreito / desiderato / não se pode olvidar / data maxima venia (empilhado)
+
+Nenhum é proibido. O problema é a frequência: quando aparecem três vezes na mesma página, a peça soa gerada. Escolha um, corte os outros.
+
+Outros vícios que denunciam texto de máquina em peça:
+
+- **Tríade automática.** "É medida que se impõe, por ser justa, necessária e adequada." Dois adjetivos bastam; um costuma bastar.
+- **Parágrafo de encerramento genérico.** "Diante de todo o exposto, resta demonstrada a robustez dos argumentos ora esposados." Vá direto ao pedido.
+- **Paralelismo negativo.** "Não se trata de mero inadimplemento, mas de verdadeira violação contratual." Diga qual é a violação.
+- **Atribuição vaga.** "A jurisprudência é pacífica", "os tribunais têm entendido". Cite o julgado: tribunal, órgão, número, relator, data.
+- **Encher com o óbvio.** Repetir o fato em três formulações diferentes não fortalece a tese; alonga a peça.
+
+### Ritmo
+
+Peça boa alterna frase curta e frase longa. Se todos os parágrafos têm quatro linhas e a mesma estrutura ("Ademais, cumpre destacar que..."), quebre. Uma frase de sete palavras depois de três frases longas faz o juiz parar de correr o olho.
+
+### Checklist antes de entregar a peça
+
+1. Negrito no corpo: no máximo um por parágrafo, e sempre justificado.
+2. Travessão: zero, ou apenas um aposto realmente necessário.
+3. Dois-pontos: só antes de enumeração, citação ou transcrição.
+4. Nenhuma muleta da lista acima repetida três vezes na mesma página.
+5. Toda afirmação sobre jurisprudência tem julgado identificado.
+6. Nenhuma tríade de adjetivos.
+7. Nenhum parágrafo de fecho genérico antes dos pedidos.
+8. Aspas retas, sem aspas curvas; sem emoji.
+9. Lido em voz alta, o texto soa como advogado escrevendo, não como relatório.
 
 ---
 
