@@ -60,7 +60,7 @@ function check(name, cond, extra) {
   check('fluxos de triagem padrão criados', await S(() => window.NAVE.state.triageFlows.length) >= 9);
   check('automações padrão criadas', await S(() => window.NAVE.state.automations.length) >= 11);
   check('base de conhecimento criada', await S(() => window.NAVE.state.knowledge.length) >= 5);
-  for (const v of ['painel', 'inbox', 'funil', 'clientes', 'agenda', 'tarefas', 'juridico', 'financeiro', 'assistente', 'sistema']) {
+  for (const v of ['painel', 'inbox', 'funil', 'clientes', 'agenda', 'tarefas', 'juridico', 'financeiro', 'carrosseis', 'assistente', 'sistema']) {
     await page.click(`.nav button[data-view="${v}"]`);
     await page.waitForTimeout(60);
     const ok = await page.evaluate(vv => document.getElementById('view-' + vv)?.classList.contains('active') && document.getElementById('view-' + vv).innerHTML.length > 50, v);
@@ -299,20 +299,52 @@ function check(name, cond, extra) {
     check('Vilmar aprovou e ação executou', await S(() => !window.NAVE.state.tasks.some(x => x.kind === 'aprovacao' && x.status === 'aberta')));
   }
 
+  console.log('\n== Carrosséis: geração offline, arte em canvas e edição ==');
+  st = await S(async () => {
+    const N = window.NAVE;
+    const car = await N.carCreate({ topic: 'Plano negou seu tratamento? Conheça seus direitos', area: 'planos_de_saude', count: 7, style: 'sobrio', cta: 'Fale com a gente no WhatsApp', handle: '@vgj.law', useAI: false });
+    const last = car.slides[car.slides.length - 1];
+    return { total: N.state.carousels.length, slides: car.slides.length, capa: car.slides[0].kind === 'capa',
+      cta: last.kind === 'cta', caption: (car.caption || '').length > 40, tags: (car.hashtags || []).length >= 3,
+      audit: N.state.auditLog.some(a => a.action === 'carousel_create') };
+  });
+  check('carrossel gerado com 7 slides (sem IA)', st.total === 1 && st.slides === 7);
+  check('estrutura capa → conteúdo → CTA', st.capa && st.cta);
+  check('legenda e hashtags geradas', st.caption && st.tags);
+  check('criação auditada', st.audit);
+  await page.click('.nav button[data-view="carrosseis"]');
+  await page.waitForTimeout(150);
+  await page.click('[data-car="open"]');
+  await page.waitForFunction(() => document.querySelectorAll('#view-carrosseis canvas[data-car-canvas]').length === 7, null, { timeout: 5000 });
+  await page.waitForTimeout(500);
+  st = await S(() => {
+    const cs = document.querySelectorAll('#view-carrosseis canvas[data-car-canvas]');
+    let drawn = 0;
+    cs.forEach(c => { if (c.toDataURL('image/png').length > 10000) drawn++; });
+    return { canvases: cs.length, drawn, fields: document.querySelectorAll('#view-carrosseis [data-carfield="title"]').length };
+  });
+  check('7 slides renderizados em canvas 1080×1350', st.canvases === 7 && st.drawn === 7, 'desenhados: ' + st.drawn);
+  check('editor com campos por slide', st.fields === 7);
+  await page.fill('#view-carrosseis [data-carfield="title"][data-idx="1"]', 'Título editado no teste');
+  await page.waitForTimeout(900);
+  check('edição de slide atualiza e persiste o modelo', await S(() => window.NAVE.state.carousels[0].slides[1].title === 'Título editado no teste'));
+
   console.log('\n== Persistência: recarregar e conferir ==');
   await page.reload();
   await page.waitForFunction(() => window.__NAVE_READY === true, null, { timeout: 15000 });
   st = await S(() => ({ contacts: window.NAVE.state.contacts.length, cases: window.NAVE.state.cases.length,
     docs: window.NAVE.state.documents.length, appts: window.NAVE.state.appointments.length,
-    audit: window.NAVE.state.auditLog.length, chats: window.NAVE.state.whatsappChats.length }));
+    audit: window.NAVE.state.auditLog.length, chats: window.NAVE.state.whatsappChats.length,
+    carousels: window.NAVE.state.carousels.length, carTitle: window.NAVE.state.carousels[0]?.slides[1]?.title }));
   check('contatos persistem', st.contacts === 2);
   check('demandas persistem', st.cases === 3);
   check('documentos persistem', st.docs >= 4);
   check('agenda persiste', st.appts === 1);
   check('auditoria persiste', st.audit > 20);
+  check('carrossel persiste com edição', st.carousels === 1 && st.carTitle === 'Título editado no teste');
 
   console.log('\n== UI final com dados: telas renderizam sem erro ==');
-  for (const v of ['painel', 'inbox', 'funil', 'clientes', 'agenda', 'tarefas', 'sistema']) {
+  for (const v of ['painel', 'inbox', 'funil', 'clientes', 'agenda', 'tarefas', 'carrosseis', 'sistema']) {
     await page.click(`.nav button[data-view="${v}"]`);
     await page.waitForTimeout(80);
   }

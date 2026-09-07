@@ -21,6 +21,7 @@ CLIENTE → WHATSAPP → AGENTE DE IA → IDENTIFICAÇÃO → TRIAGEM → QUALIF
 | **Agenda** | Slots por expediente, agendar/confirmar/remarcar/cancelar; o agente agenda sozinho quando o cliente pede |
 | **Tarefas** | Central de tarefas + fila de **aprovações da IA** |
 | **Jurídico / Financeiro** | Processos, prazos, contratos e parcelas (módulos originais preservados) |
+| **Carrosséis** | Criador de carrosséis jurídicos para Instagram: escreve os slides (banco de conteúdo por área ou IA), renderiza a arte 1080×1350 em 4 estilos, permite editar slide a slide e exporta PNGs + legenda com hashtags (respeitando o Prov. 205/2021 OAB) |
 | **Assistente** | IA com contexto real do escritório para textos e diagnósticos |
 | **Sistema** | Automações configuráveis, fluxos de triagem por área, base de conhecimento, permissões da IA e **auditoria completa** |
 

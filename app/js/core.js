@@ -56,7 +56,7 @@ async function apiFetch(url, opts) {
 /* ---------- estado ---------- */
 const KEYS = ['config', 'contacts', 'companies', 'cases', 'pipeline', 'documents', 'tasks', 'appointments',
   'automations', 'knowledge', 'triageFlows', 'auditLog', 'contracts', 'processes', 'deadlines', 'learnings',
-  'chat', 'whatsappChats', 'whatsappMessages', 'waAgentLogs'];
+  'chat', 'whatsappChats', 'whatsappMessages', 'waAgentLogs', 'carousels'];
 const LIST_KEYS = KEYS.filter(k => !['config', 'pipeline'].includes(k));
 
 const defaultConfig = {
@@ -80,7 +80,7 @@ const defaultConfig = {
   }
 };
 
-const state = NAVE.state = { waSelectedChatId: '', inboxFilter: 'todos', clientDetailId: '', systemTab: 'automacoes' };
+const state = NAVE.state = { waSelectedChatId: '', inboxFilter: 'todos', clientDetailId: '', systemTab: 'automacoes', carSelectedId: '' };
 
 async function loadState() {
   for (const k of KEYS) state[k] = await sget(k);

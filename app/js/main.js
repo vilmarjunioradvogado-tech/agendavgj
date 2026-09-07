@@ -7,7 +7,7 @@ const { $, esc, toast, openModal, closeModal, sset, uid, today } = N;
 const NAV = [
   ['painel', '⌂', 'Painel'], ['inbox', '✉', 'Inbox'], ['funil', '◧', 'Funil'], ['clientes', '◎', 'Clientes'],
   ['agenda', '📅', 'Agenda'], ['tarefas', '☑', 'Tarefas'], ['juridico', '§', 'Jurídico'],
-  ['financeiro', '¤', 'Financeiro'], ['assistente', '✦', 'Assistente'], ['sistema', '⚙', 'Sistema']];
+  ['financeiro', '¤', 'Financeiro'], ['carrosseis', '▣', 'Carrosséis'], ['assistente', '✦', 'Assistente'], ['sistema', '⚙', 'Sistema']];
 
 function simulateModal() {
   openModal(`<h3>Simular mensagem recebida</h3>
