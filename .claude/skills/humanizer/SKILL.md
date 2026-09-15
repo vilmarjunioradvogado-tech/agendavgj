@@ -13,7 +13,7 @@ description: |
   replica, recurso, apelacao, agravo, embargos, manifestacao, parecer, notificacao,
   contrato, procuracao - mesmo que o usuario nao cite "humanizar". Nesse caso siga
   tambem a secao "Pecas juridicas (pt-BR)", que limita o uso de negrito, travessao
-  e dois-pontos. Complementa a skill tipografia-juridica: aquela cuida da forma
+  e proibe travessao e dois-pontos no texto corrido. Complementa a skill tipografia-juridica: aquela cuida da forma
   (fonte, margens, estrutura), esta cuida do texto.
 allowed-tools:
   - Read
@@ -90,25 +90,27 @@ O negrito é do padrão da casa, mas tem lugar certo:
 
 Antes de entregar, conte os trechos em negrito no corpo. Se passarem de um por parágrafo, corte os mais fracos.
 
-### Travessão
+### Pontuação, regra absoluta
 
-Não usar travessão como recurso de ênfase ou de respiro dramático. Uso legítimo do travessão em peça: aposto explicativo longo e ocasional, e diálogo (que quase nunca aparece).
+Duas proibições valem em toda peça, sempre, sem depender de pedido do usuário.
 
-- Errado: "A parte autora não juntou o contrato — documento essencial — e ainda assim pede a inversão."
-- Certo: "A parte autora não juntou o contrato, documento essencial, e ainda assim pede a inversão."
+**Travessão: zero.** Nenhum `—` e nenhum `–`. Não serve como ênfase, aposto, respiro nem intervalo. Troque por vírgula, parênteses ou ponto final. Intervalo se escreve com "a" ("fls. 12 a 18", "de 2019 a 2023"). Item de lista nunca abre com travessão. Hífen de palavra composta continua normal.
 
-Vírgula, parênteses ou ponto final resolvem quase todos os casos. Se o parágrafo tem dois travessões, sobra pelo menos um.
+- Errado: "A ré não juntou o contrato — documento essencial — e ainda assim pede a inversão."
+- Certo: "A ré não juntou o contrato, documento essencial, e ainda assim pede a inversão."
 
-### Dois-pontos
+**Dois-pontos: zero no texto corrido.** Não abrem enumeração, não anunciam citação, não criam suspense. A frase que antecede uma lista termina em ponto.
 
-Dois-pontos servem para anunciar enumeração, citação ou transcrição. Não servem para criar suspense retórico.
-
+- Errado: "Ante o exposto, requer:"
+- Certo: "Ante o exposto, a parte autora requer o seguinte."
 - Errado: "O ponto é um só: a prescrição já correu."
 - Certo: "A prescrição já correu."
-- Errado: "Vejamos o que diz a jurisprudência: a orientação é pacífica."
-- Certo: "A orientação do STJ é pacífica nesse ponto."
+- Errado: "Vejamos o que diz o STJ:"
+- Certo: "A orientação do STJ é firme nesse sentido." (transcrição em bloco recuado logo abaixo)
 
-Um par de dois-pontos por seção costuma bastar. Nunca dois-pontos duas vezes na mesma frase.
+O sinal sobrevive num único lugar, e ali ele é layout, não pontuação: separador de campo em bloco estruturado (quadro de requerimentos, síntese processual, ficha, "Processo", "Valor da causa"). No texto corrido, nunca.
+
+Antes de entregar, procure os três sinais no arquivo. O texto corrido tem que devolver zero ocorrência.
 
 ### Vocabulário de IA em português
 
@@ -133,8 +135,8 @@ Peça boa alterna frase curta e frase longa. Se todos os parágrafos têm quatro
 ### Checklist antes de entregar a peça
 
 1. Negrito no corpo: no máximo um por parágrafo, e sempre justificado.
-2. Travessão: zero, ou apenas um aposto realmente necessário.
-3. Dois-pontos: só antes de enumeração, citação ou transcrição.
+2. Travessão: zero, sem exceção.
+3. Dois-pontos: zero no texto corrido; só como separador de campo em bloco estruturado.
 4. Nenhuma muleta da lista acima repetida três vezes na mesma página.
 5. Toda afirmação sobre jurisprudência tem julgado identificado.
 6. Nenhuma tríade de adjetivos.
